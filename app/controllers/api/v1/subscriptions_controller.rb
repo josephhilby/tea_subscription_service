@@ -1,10 +1,16 @@
 module Api
 	module V1
 		class SubscriptionsController < ApplicationController
-			# before_action :check_params, only: [:create]
+			before_action :check_params, only: [:destroy]
 
 			def create
-				render json: SubscriptionSerializer.new(Subscription.create(subscription_params))
+        require'pry';binding.pry
+        new_subscription = Subscription.new(subscription_params)
+        if new_subscription.save
+          render json: { success: "Favorite added successfully" }, status: 201
+        else
+          render json: { message: new_favorite.errors.full_messages.to_sentence }, status: 400
+        end
 			end
 
 			def destroy
@@ -23,7 +29,7 @@ module Api
 			private
 
 			def check_params
-				return unless params[:name] == "" || !params[:name] || !params[:id]
+				return unless !params[:id]
 				render json: { errors: 'Bad Request' }, status: 400
 			end
 
