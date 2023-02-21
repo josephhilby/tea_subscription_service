@@ -3,9 +3,9 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      get '/subscriptions', to: 'subscription#index'
-      post '/subscriptions', to: 'subscription#create'
-      delete '/subscriptions/:id', to: 'subscription#destroy'
+      get '/subscriptions', to: 'subscriptions#index'
+      post '/subscriptions', to: 'subscriptions#create'
+      delete '/subscriptions/:id', to: 'subscriptions#destroy'
     end
   end
 end
