@@ -24,6 +24,6 @@ describe "Create Subscriptions API" do
 		expect(created_subscription.status).to eq(subscription_params[:status])
 		expect(created_subscription.frequency).to eq(subscription_params[:frequency])
 		expect(created_subscription.customer_id).to eq(subscription_params[:customer_id])
-		expect(created_subscription.tea_1).to eq(subscription_params[:tea_1])
+		expect(created_subscription.tea_id).to eq(subscription_params[:tea_id])
 	end
 end
