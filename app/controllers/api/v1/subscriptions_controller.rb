@@ -4,8 +4,7 @@ module Api
 			# before_action :check_params, only: [:create]
 
 			def create
-        require'pry';binding.pry
-				render json: SubscriptionsSerializer.new(Subscription.create(subscription_params))
+				render json: SubscriptionSerializer.new(Subscription.create(subscription_params))
 			end
 
 			def destroy
@@ -28,7 +27,7 @@ module Api
 			end
 
 			def subscription_params
-				params.require(:subscription).permit(:name)
+				params.require(:subscription).permit(:title, :price, :status, :frequency, :customer_id, :tea_id)
 			end
 		end
 	end
