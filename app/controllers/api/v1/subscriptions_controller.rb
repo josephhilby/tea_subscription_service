@@ -1,7 +1,6 @@
 module Api
 	module V1
 		class SubscriptionsController < ApplicationController
-			before_action :check_params, only: [:destroy]
 
 			def create
         new_subscription = Subscription.new(subscription_params)
@@ -26,11 +25,6 @@ module Api
 			end
 
 			private
-
-			def check_params
-				return unless !params[:id]
-				render json: { errors: 'Bad Request' }, status: 400
-			end
 
 			def subscription_params
 				params.require(:subscription).permit(:title, :price, :status, :frequency, :customer_id, :tea_id)
