@@ -8,11 +8,12 @@ module Api
 			end
 
 			def destroy
-				# if Subscription.exists?(params[:id])
-				# 	render json: SubscriptionsSerializer.new(Subscription.delete(params[:id]))
-				# else
-				# 	render json: { errors: 'Not Found' }, status: 404
-				# end
+				if Subscription.exists?(params[:id])
+          Subscription.delete(params[:id])
+					render json: { }, status: 204
+				else
+					render json: { errors: 'Not Found' }, status: 404
+				end
 			end
 
 			def index
