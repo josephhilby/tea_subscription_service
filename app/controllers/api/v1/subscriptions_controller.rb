@@ -4,12 +4,11 @@ module Api
 			before_action :check_params, only: [:destroy]
 
 			def create
-        require'pry';binding.pry
         new_subscription = Subscription.new(subscription_params)
         if new_subscription.save
-          render json: { success: "Favorite added successfully" }, status: 201
+          render json: { success: "Subscription added successfully" }, status: 201
         else
-          render json: { message: new_favorite.errors.full_messages.to_sentence }, status: 400
+          render json: { message: new_subscription.errors.full_messages.to_sentence }, status: 400
         end
 			end
 
@@ -18,7 +17,7 @@ module Api
           Subscription.delete(params[:id])
 					render json: { }, status: 204
 				else
-					render json: { errors: 'Not Found' }, status: 404
+					render json: { message: 'Not Found' }, status: 404
 				end
 			end
 
