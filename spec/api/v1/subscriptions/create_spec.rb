@@ -2,13 +2,15 @@ require 'rails_helper'
 
 describe "Create Subscriptions API" do
 	it "can POST a new subscription" do
+    customer = create(:customer)
+    tea = create(:tea)
 		subscription_params = ({
 		    title: 'title',
         price: 'price',
         status: 'status',
         frequency: 'frequency',
-        customer_id: 1,
-        tea_id: 1
+        customer_id: customer.id,
+        tea_id: tea.id
 		})
 		headers = {"CONTENT_TYPE" => "application/json"}
 
