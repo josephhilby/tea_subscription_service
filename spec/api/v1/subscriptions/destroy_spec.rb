@@ -31,8 +31,8 @@ describe "Destroy Subscriptions API" do
 
 			expect(response.status).to eq(404)
 
-			expect(subscription).to have_key(:errors)
-			expect(subscription[:errors]).to be_a(String)
+			expect(subscription).to have_key(:message)
+			expect(subscription[:message]).to be_a(String)
 		end
 	end
 end
