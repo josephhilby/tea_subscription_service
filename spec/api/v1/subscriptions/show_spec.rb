@@ -9,7 +9,7 @@ describe 'Show Subscriptions API' do
       subscription_params = { api_key: customer.api_key }
       headers = {"CONTENT_TYPE" => "application/json"}
 
-      # why wont JSON.generate(subscription: subscription_params) work here like it will on every other spec file?
+      # why wont JSON.generate(subscription: subscription_params) work here like it will on every other spec file (only fails with get requests)?
 			get api_v1_subscription_path(subscription), headers: headers, :params => { :subscription => subscription_params }
 
 			expect(response).to be_successful
