@@ -8,5 +8,6 @@ FactoryBot.define do
     address {Faker::Address.full_address}
     password { 'password' }
     password_digest { 'password' }
+    api_key { SecureRandom.urlsafe_base64 }
   end
 end
