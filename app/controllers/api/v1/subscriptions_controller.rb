@@ -5,13 +5,12 @@ module Api
 
 			def create
         new_subscription = Subscription.find_or_initialize_by(subscription_params)
-        customer_by_id = Customer.find_by(id: subscription_params[:customer_id])
         customer_by_key = Customer.find_by(api_key: customer_key)
-        if !(customer_by_id == customer_by_key)
-          render json: { message: 'Invalid or missing api_key for customer id' }, status: 401
+        if !customer_by_key
+          render json: { message: 'Invalid api_key' }, status: 401
         elsif !new_subscription.save
           render json: { message: new_subscription.errors.full_messages.to_sentence }, status: 400
-        elsif new_subscription.save && customer_by_id == customer_by_key
+        elsif new_subscription.save && customer_by_key
           render json: { message: "Subscription added successfully" }, status: 201
         end
 			end
@@ -39,11 +38,15 @@ module Api
 			end
 
       def update
-				if Subscription.exists?(params[:id])
+        customer_by_key = Customer.find_by(api_key: customer_key)
+				subscription = Subscription.find_by(id: params[:id])
+        if !customer_by_key
+          render json: { message: 'Invalid api_key' }, status: 401
+        elsif !subscription
+          render json: { message: 'Not Found' }, status: 404
+        elsif subscription && customer_by_key
 					render json: SubscriptionSerializer.new(Subscription.update(params[:id], subscription_params))
-				else
-					render json: { message: 'Not Found' }, status: 404
-				end
+        end
 			end
 
 			private
@@ -53,7 +56,11 @@ module Api
 			end
 
       def customer_key
-        params.require(:subscription)[:api_key]
+        if params[:subscription]
+          params.require(:subscription)[:api_key]
+        else
+          render json: { message: 'Invalid or missing api_key in request body' }, status: 401
+        end
       end
 		end
 	end
