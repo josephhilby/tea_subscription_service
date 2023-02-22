@@ -28,7 +28,14 @@ module Api
 			end
 
 			def index
-				render json: SubscriptionSerializer.new(Subscription.all)
+        customer_by_key = Customer.find_by(api_key: customer_key)
+        if !customer_by_key
+          render json: { message: 'Invalid api_key' }, status: 401
+        elsif customer_by_key.subscriptions.empty?
+          render json: { message: 'Not Found' }, status: 404
+        elsif customer_by_key && !customer_by_key.subscriptions.empty?
+          render json: SubscriptionSerializer.new(customer_by_key.subscriptions)
+        end
 			end
 
       def show
