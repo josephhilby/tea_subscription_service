@@ -33,10 +33,13 @@ module Api
 
       def show
         subscription = Subscription.find_by(id: params[:id])
-        if subscription
-				  render json: SubscriptionSerializer.new(subscription)
-        else
+        customer_by_key = Customer.find_by(api_key: customer_key)
+        if !customer_by_key
+          render json: { message: 'Invalid api_key' }, status: 401
+        elsif !subscription
           render json: { message: 'Not Found' }, status: 404
+        elsif customer_by_key && subscription
+				  render json: SubscriptionSerializer.new(subscription)
         end
 			end
 
