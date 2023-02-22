@@ -16,12 +16,15 @@ module Api
 			end
 
 			def destroy
-				if Subscription.exists?(params[:id])
+        customer_by_key = Customer.find_by(api_key: customer_key)
+				if !customer_by_key
+          render json: { message: 'Invalid api_key' }, status: 401
+        elsif !Subscription.exists?(params[:id])
+          render json: { message: 'Not Found' }, status: 404
+        elsif Subscription.exists?(params[:id]) && customer_by_key
           Subscription.delete(params[:id])
 					render json: { }, status: 204
-				else
-					render json: { message: 'Not Found' }, status: 404
-				end
+        end
 			end
 
 			def index
