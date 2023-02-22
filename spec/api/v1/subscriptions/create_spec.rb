@@ -19,8 +19,9 @@ describe "Create Subscriptions API" do
       post api_v1_subscriptions_path, headers: headers, params: JSON.generate(subscription: subscription_params)
 
       created_subscription = Subscription.last
-      # require'pry';binding.pry
+
       expect(response).to be_successful
+
       expect(created_subscription.title).to eq(subscription_params[:title])
       expect(created_subscription.price).to eq(subscription_params[:price])
       expect(created_subscription.status).to eq(subscription_params[:status])
@@ -80,7 +81,7 @@ describe "Create Subscriptions API" do
 
       expect(subscription).to have_key(:message)
       expect(subscription[:message]).to be_a(String)
-      expect(subscription[:message]).to eq("Invalid or missing api_key for customer id")
+      expect(subscription[:message]).to eq("Invalid api_key")
     end
   end
 end
