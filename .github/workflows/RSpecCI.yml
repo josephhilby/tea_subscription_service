@@ -16,8 +16,10 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@359bebbc29cbe6c87da6bc9ea3bc930432750108
         with:
-          ruby-version: '2.7.4'
+          ruby-version: '2.7'
       - name: Install dependencies
         run: bundle install
+      - name: Create PostgreSQL DB
+        run: rails db:{drop,create,migrate}
       - name: Run tests
         run: bundle exec rspec spec
