@@ -1,13 +1,18 @@
 module Api
 	module V1
 		class SubscriptionsController < ApplicationController
+      before_action :customer_key
 
 			def create
-        new_subscription = Subscription.new(subscription_params)
-        if new_subscription.save
-          render json: { message: "Subscription added successfully" }, status: 201
-        else
+        new_subscription = Subscription.find_or_initialize_by(subscription_params)
+        customer_by_id = Customer.find_by(id: subscription_params[:customer_id])
+        customer_by_key = Customer.find_by(api_key: customer_key)
+        if !(customer_by_id == customer_by_key)
+          render json: { message: 'Invalid or missing api_key for customer id' }, status: 401
+        elsif !new_subscription.save
           render json: { message: new_subscription.errors.full_messages.to_sentence }, status: 400
+        elsif new_subscription.save && customer_by_id == customer_by_key
+          render json: { message: "Subscription added successfully" }, status: 201
         end
 			end
 
@@ -46,6 +51,10 @@ module Api
 			def subscription_params
 				params.require(:subscription).permit(:title, :price, :status, :frequency, :customer_id, :tea_id)
 			end
+
+      def customer_key
+        params.require(:subscription)[:api_key]
+      end
 		end
 	end
 end
