@@ -30,6 +30,7 @@ describe "Create Subscriptions API" do
       expect(created_subscription.tea_id).to eq(subscription_params[:tea_id])
     end
   end
+
   context 'given a non-valid params' do
     it 'returns an error' do
       customer_2 = create(:customer)
@@ -56,6 +57,7 @@ describe "Create Subscriptions API" do
       expect(subscription[:message]).to eq("Status can't be blank and Frequency can't be blank")
     end
   end
+
   context 'given a non-valid key' do
     it 'returns an error' do
       customer_3 = create(:customer)

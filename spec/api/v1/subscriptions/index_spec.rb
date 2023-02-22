@@ -2,16 +2,23 @@ require 'rails_helper'
 
 describe 'Index Subscriptions API' do
 	it 'can GET a list of subscriptions' do
-    customer = create(:customer)
+    customer_1 = create(:customer)
     tea_1 = create(:tea)
     tea_2 = create(:tea)
     tea_3 = create(:tea)
 
-		create(:subscription, customer: customer, tea: tea_1)
-		create(:subscription, customer: customer, tea: tea_2)
-		create(:subscription, customer: customer, tea: tea_3)
+    customer_2 = create(:customer)
+    tea_4 = create(:tea)
 
-		get api_v1_subscriptions_path
+		create(:subscription, customer: customer_1, tea: tea_1)
+		create(:subscription, customer: customer_1, tea: tea_2)
+		create(:subscription, customer: customer_1, tea: tea_3)
+		customer_2_subscription = create(:subscription, customer: customer_2, tea: tea_3)
+
+    subscription_params = { api_key: 'bad key' }
+    headers = {"CONTENT_TYPE" => "application/json"}
+
+		get api_v1_subscriptions_path, headers: headers, params: JSON.generate(subscription: subscription_params)
 		expect(response).to be_successful
 
 		subscriptions = JSON.parse(response.body, symbolize_names: true)
@@ -28,6 +35,7 @@ describe 'Index Subscriptions API' do
       expect(subscription.count).to eq(4)
 			expect(subscription).to have_key(:id)
 			expect(subscription[:id]).to be_an(String)
+			expect(subscription[:id]).to_not eq(customer_2_subscription.id)
 
       expect(subscription).to have_key(:type)
       expect(subscription[:type]).to be_an(String)
