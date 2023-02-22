@@ -24,9 +24,13 @@ module Api
 				render json: SubscriptionSerializer.new(Subscription.all)
 			end
 
-      def updated
-
-      end
+      def update
+				if Subscription.exists?(params[:id])
+					render json: SubscriptionSerializer.new(Subscription.update(params[:id], subscription_params))
+				else
+					render json: { message: 'Not Found' }, status: 404
+				end
+			end
 
 			private
 
