@@ -10,6 +10,10 @@ RSpec.describe Api::V1::SubscriptionsController, type: :routing do
 			expect(get: '/api/v1/subscriptions').to route_to('api/v1/subscriptions#index')
 		end
 
+    it 'routes to #show' do
+			expect(get: "/api/v1/subscriptions/#{subscription.id}").to route_to('api/v1/subscriptions#show', "id"=>"#{subscription.id}")
+		end
+
 		it 'routes to #create' do
 			expect(post: '/api/v1/subscriptions', params: { body: 'params' }).to route_to('api/v1/subscriptions#create')
 		end
