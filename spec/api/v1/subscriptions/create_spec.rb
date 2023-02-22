@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe "Create Subscriptions API" do
-  context 'given a valid params' do
+  context 'given valid params' do
     it "can POST a new subscription" do
       customer = create(:customer)
       tea = create(:tea)
