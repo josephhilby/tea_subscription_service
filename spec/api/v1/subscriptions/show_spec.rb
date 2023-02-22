@@ -12,7 +12,7 @@ describe 'Show Subscriptions API' do
 			expect(response).to be_successful
 
 			subscription = JSON.parse(response.body, symbolize_names: true)
-      # require'pry';binding.pry
+
 		  expect(subscription).to be_an(Hash)
       expect(subscription.count).to eq(1)
       expect(subscription[:data]).to be_an(Hash)
