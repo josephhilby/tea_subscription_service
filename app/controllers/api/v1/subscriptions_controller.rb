@@ -5,7 +5,7 @@ module Api
 			def create
         new_subscription = Subscription.new(subscription_params)
         if new_subscription.save
-          render json: { success: "Subscription added successfully" }, status: 201
+          render json: { message: "Subscription added successfully" }, status: 201
         else
           render json: { message: new_subscription.errors.full_messages.to_sentence }, status: 400
         end
@@ -23,6 +23,10 @@ module Api
 			def index
 				render json: SubscriptionSerializer.new(Subscription.all)
 			end
+
+      def updated
+
+      end
 
 			private
 
