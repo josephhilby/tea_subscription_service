@@ -1,5 +1,7 @@
+require 'bcrypt'
+
 class Customer < ApplicationRecord
-  include Bcrypt
+  include BCrypt
 
   validates_presence_of :email
   validates_presence_of :password, on: :create
