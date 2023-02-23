@@ -15,11 +15,11 @@ RSpec.describe Api::V1::SubscriptionsController, type: :routing do
 		end
 
 		it 'routes to #create' do
-			expect(post: "/api/v1/subscriptions?api_key=#{customer.api_key}", params: { body: 'params' }).to route_to('api/v1/subscriptions#create', "api_key"=>"#{customer.api_key}")
+			expect(post: "/api/v1/subscriptions?api_key=#{customer.api_key}").to route_to('api/v1/subscriptions#create', "api_key"=>"#{customer.api_key}")
 		end
 
 		it 'routes to #update' do
-			expect(patch: "/api/v1/subscriptions/#{subscription.id}?api_key=#{customer.api_key}", params: { body: 'params' }).to route_to('api/v1/subscriptions#update', "id"=>"#{subscription.id}", "api_key"=>"#{customer.api_key}")
+			expect(patch: "/api/v1/subscriptions/#{subscription.id}?api_key=#{customer.api_key}").to route_to('api/v1/subscriptions#update', "id"=>"#{subscription.id}", "api_key"=>"#{customer.api_key}")
 		end
 
 		it 'routes to #destroy' do

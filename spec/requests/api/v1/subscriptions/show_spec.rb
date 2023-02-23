@@ -1,13 +1,15 @@
 require 'rails_helper'
 
 describe 'Show Subscriptions API' do
+  let!(:customer_1) { create(:customer) }
+  let!(:customer_2) { create(:customer) }
+  let!(:tea) { create(:tea) }
+  let!(:subscription_1) { create(:subscription, customer: customer_1, tea: tea) }
+  let!(:subscription_2) { create(:subscription, customer: customer_2, tea: tea) }
+
 	context 'given a valid params' do
 		it 'can GET one subscription by ID' do
-			customer = create(:customer)
-      tea = create(:tea)
-			subscription = create(:subscription, customer_id: customer.id, tea_id: tea.id)
-
-			get api_v1_subscription_path(subscription), :params => { api_key: customer.api_key }
+			get api_v1_subscription_path(subscription_1), :params => { api_key: customer_1.api_key }
 
 			expect(response).to be_successful
       expect(response.status).to eq(200)
@@ -77,12 +79,6 @@ describe 'Show Subscriptions API' do
 
 	context 'given a non-valid ID' do
 		it 'returns an error' do
-      customer_1 = create(:customer)
-      customer_2 = create(:customer)
-      tea = create(:tea)
-			subscription_1 = create(:subscription, customer_id: customer_1.id, tea_id: tea.id)
-			subscription_2 = create(:subscription, customer_id: customer_2.id, tea_id: tea.id)
-
 			get api_v1_subscription_path(subscription_2), :params => { api_key: customer_1.api_key }
 
 			expect(response).not_to be_successful
@@ -96,11 +92,7 @@ describe 'Show Subscriptions API' do
 		end
 
 		it 'returns an error' do
-      customer = create(:customer)
-      tea = create(:tea)
-			subscription = create(:subscription, customer_id: customer.id, tea_id: tea.id)
-
-			get api_v1_subscription_path(Subscription.last.id + 1), :params => { api_key: customer.api_key }
+			get api_v1_subscription_path(Subscription.last.id + 1), :params => { api_key: customer_1.api_key }
 
 			expect(response).not_to be_successful
 			expect(response.status).to eq(404)
@@ -115,11 +107,7 @@ describe 'Show Subscriptions API' do
 
 	context 'given a non-valid key' do
 		it 'returns an error' do
-      customer = create(:customer)
-      tea = create(:tea)
-			subscription = create(:subscription, customer_id: customer.id, tea_id: tea.id)
-
-			get api_v1_subscription_path(subscription), :params => { api_key: 'bad key' }
+			get api_v1_subscription_path(subscription_1), :params => { api_key: 'bad key' }
 
 			expect(response).not_to be_successful
 			expect(response.status).to eq(401)
@@ -133,11 +121,7 @@ describe 'Show Subscriptions API' do
 
 	context 'given no key' do
 		it 'returns an error' do
-      customer = create(:customer)
-      tea = create(:tea)
-			subscription = create(:subscription, customer_id: customer.id, tea_id: tea.id)
-
-			get api_v1_subscription_path(subscription)
+			get api_v1_subscription_path(subscription_1)
 
 			expect(response).not_to be_successful
 			expect(response.status).to eq(401)
