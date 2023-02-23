@@ -15,11 +15,7 @@
 <br />
 <div align="center">
 
-[![Contributors][contributors-shield]][contributors-url]
-
-[![Forks][forks-shield]][forks-url]
-
-[![Issues][issues-shield]][issues-url]
+[![Contributors][contributors-shield]][contributors-url] [![Forks][forks-shield]][forks-url] [![Issues][issues-shield]][issues-url]
 
 <a href="https://github.com/josephhilby/tea_subscription_service">
 
@@ -64,7 +60,7 @@ This project was a take home tech challenge to create a ***Ruby on Rails*** API 
 
 ### Local Installation
 
-This application was made with the following:[^1]
+This application was made with the following:
 
 * ruby 2.7.4
 
@@ -88,6 +84,7 @@ rails db:{drop,create,migrate}
 </tr>
 <td><img src="lib/images/database.png" alt="Database" style='width: 100%'></td>
 </tr>
+</table>
 
 3. Start your rails server in the root directory.
 
@@ -276,7 +273,7 @@ See the [open issues](https://github.com/josephhilby/tea_subscription_service/is
 <div align="center">
 <table>
 <tr>
-<td><img src="https://media.licdn.com/dms/image/C4E03AQEdZUKFgryaqg/profile-displayphoto-shrink_800_800/0/1567961066772?e=1680739200&v=beta&t=TFQt8RiDDMpJHbytApiShBpLVCCZlfeuUwLffp95tG8"></td>
+<td><img width="150px" src="https://media.licdn.com/dms/image/C4E03AQEdZUKFgryaqg/profile-displayphoto-shrink_800_800/0/1567961066772?e=1680739200&v=beta&t=TFQt8RiDDMpJHbytApiShBpLVCCZlfeuUwLffp95tG8"></td>
 </tr>
 <tr>
 <td>Joseph Hilby</td>
@@ -320,14 +317,6 @@ Thanks again!
 * API-endpoints: [https://github.com/bufferapp/README/blob/master/billing/api-endpoints.md](https://github.com/bufferapp/README/blob/master/billing/api-endpoints.md)
 
 <p align="right">(<a href="#README">back to top</a>)</p>
-
----
-
-[^1]: Note: Information on installing Ruby 2.7.4 and Rails 5.2.8 can be found [here](https://backend.turing.edu/module3/misc/ruby_and_rails_versions)
-
-[^2]: Note: The port is crrrently set to 5001. To change the port #, go to `config/puma.rb` and enter your desired port #: `port ENV.fetch("PORT") { <YOUR NUMBER HERE> }`. You can also elect to un-comment the Background Workers Job CleanDbJob (favorites_controller: line 40). Before you do this, you will need to set up a Redis server and Sidekiq adapter. Instructions to this can be found [here](https://backend.turing.edu/module3/archive/lessons/background_workers). Troubleshooting Redis and Mac M1 issues can be found [here](https://medium.com/geekculture/error-cannot-install-in-homebrew-on-arm-processor-in-intel-default-prefix-fd2e5f5fee88).
-
-[^3]: Note: The `:country` section in the JSON Response refers to the search criteria. If no video is found on that country, a video on a related country (by culture or geographic area) will instead be returned.
 
 <!-- MARKDOWN LINKS & IMAGES -->
 
