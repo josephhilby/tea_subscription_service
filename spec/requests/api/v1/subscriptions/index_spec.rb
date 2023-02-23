@@ -17,18 +17,20 @@ describe 'Index Subscriptions API' do
       customer_2_subscription = create(:subscription, customer: customer_2, tea: tea_3)
 
       get api_v1_subscriptions_path, :params => { api_key: customer_1.api_key }
+
       expect(response).to be_successful
+      expect(response.status).to eq(200)
 
-      subscriptions = JSON.parse(response.body, symbolize_names: true)
+      subscriptions_response = JSON.parse(response.body, symbolize_names: true)
 
-      expect(subscriptions).to be_an(Hash)
-      expect(subscriptions.count).to eq(1)
-      expect(subscriptions[:data]).to be_an(Array)
+      expect(subscriptions_response).to be_an(Hash)
+      expect(subscriptions_response.count).to eq(1)
+      expect(subscriptions_response[:data]).to be_an(Array)
 
-      expect(subscriptions[:data].count).to eq(3)
-      expect(subscriptions[:data].first).to be_an(Hash)
+      expect(subscriptions_response[:data].count).to eq(3)
+      expect(subscriptions_response[:data].first).to be_an(Hash)
 
-      subscriptions[:data].each do |subscription|
+      subscriptions_response[:data].each do |subscription|
 
         expect(subscription.count).to eq(4)
         expect(subscription).to have_key(:id)
@@ -97,13 +99,13 @@ describe 'Index Subscriptions API' do
 			get api_v1_subscriptions_path, :params => { api_key: customer.api_key }
 
 			expect(response).not_to be_successful
-
-			thing = JSON.parse(response.body, symbolize_names: true)
-
 			expect(response.status).to eq(404)
 
-			expect(thing).to have_key(:message)
-			expect(thing[:message]).to be_a(String)
+			subscriptions_response = JSON.parse(response.body, symbolize_names: true)
+
+			expect(subscriptions_response).to have_key(:message)
+			expect(subscriptions_response[:message]).to be_a(String)
+			expect(subscriptions_response[:message]).to eq("Not Found")
 		end
   end
 
@@ -116,13 +118,32 @@ describe 'Index Subscriptions API' do
 			get api_v1_subscriptions_path, :params => { api_key: 'bad key' }
 
 			expect(response).not_to be_successful
-
-			thing = JSON.parse(response.body, symbolize_names: true)
-
 			expect(response.status).to eq(401)
 
-			expect(thing).to have_key(:message)
-			expect(thing[:message]).to be_a(String)
+			subscriptions_response = JSON.parse(response.body, symbolize_names: true)
+
+			expect(subscriptions_response).to have_key(:message)
+			expect(subscriptions_response[:message]).to be_a(String)
+			expect(subscriptions_response[:message]).to eq("Invalid api_key")
+		end
+  end
+
+  context 'with no key' do
+    it 'returns an error' do
+      customer = create(:customer)
+      tea = create(:tea)
+			subscription = create(:subscription, customer_id: customer.id, tea_id: tea.id)
+
+			get api_v1_subscriptions_path
+
+			expect(response).not_to be_successful
+			expect(response.status).to eq(401)
+
+			subscriptions_response = JSON.parse(response.body, symbolize_names: true)
+
+			expect(subscriptions_response).to have_key(:message)
+			expect(subscriptions_response[:message]).to be_a(String)
+			expect(subscriptions_response[:message]).to eq("Invalid or missing api_key")
 		end
   end
 end

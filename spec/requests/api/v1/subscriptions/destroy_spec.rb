@@ -12,8 +12,6 @@ describe "Destroy Subscriptions API" do
 
 			expect(response).to be_successful
       expect(response.status).to eq(204)
-
-			expect(response.message).to be_a(String)
 		end
 	end
 
@@ -33,6 +31,7 @@ describe "Destroy Subscriptions API" do
 
 			expect(subscription).to have_key(:message)
 			expect(subscription[:message]).to be_a(String)
+			expect(subscription[:message]).to eq("Not Found")
 		end
 	end
 
@@ -52,6 +51,27 @@ describe "Destroy Subscriptions API" do
 
 			expect(subscription).to have_key(:message)
 			expect(subscription[:message]).to be_a(String)
+			expect(subscription[:message]).to eq("Invalid api_key")
+		end
+	end
+
+	context 'given no key' do
+		it 'returns an error' do
+			customer = create(:customer)
+      tea = create(:tea)
+			subscription = create(:subscription, customer_id: customer.id, tea_id: tea.id)
+
+			delete api_v1_subscription_path(subscription.id)
+
+			expect(response).not_to be_successful
+
+			subscription = JSON.parse(response.body, symbolize_names: true)
+
+			expect(response.status).to eq(401)
+
+			expect(subscription).to have_key(:message)
+			expect(subscription[:message]).to be_a(String)
+			expect(subscription[:message]).to eq("Invalid or missing api_key")
 		end
 	end
 end

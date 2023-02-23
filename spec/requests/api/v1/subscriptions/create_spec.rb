@@ -17,9 +17,16 @@ describe "Create Subscriptions API" do
 
       post api_v1_subscriptions_path, headers: headers, params: JSON.generate(api_key: customer.api_key, subscription: subscription_params)
 
-      created_subscription = Subscription.last
-
       expect(response).to be_successful
+      expect(response.status).to eq(201)
+
+      subscription_response = JSON.parse(response.body, symbolize_names: true)
+
+      expect(subscription_response).to have_key(:message)
+      expect(subscription_response[:message]).to be_a(String)
+      expect(subscription_response[:message]).to eq("Subscription added successfully")
+
+      created_subscription = Subscription.last
 
       expect(created_subscription.title).to eq(subscription_params[:title])
       expect(created_subscription.price).to eq(subscription_params[:price])
@@ -45,14 +52,13 @@ describe "Create Subscriptions API" do
       post api_v1_subscriptions_path, headers: headers, params: JSON.generate(api_key: customer_2.api_key, subscription: subscription_params_2)
 
       expect(response).not_to be_successful
-
-      subscription = JSON.parse(response.body, symbolize_names: true)
-
       expect(response.status).to eq(400)
 
-      expect(subscription).to have_key(:message)
-      expect(subscription[:message]).to be_a(String)
-      expect(subscription[:message]).to eq("Status can't be blank and Frequency can't be blank")
+      subscription_response = JSON.parse(response.body, symbolize_names: true)
+
+      expect(subscription_response).to have_key(:message)
+      expect(subscription_response[:message]).to be_a(String)
+      expect(subscription_response[:message]).to eq("Status can't be blank and Frequency can't be blank")
     end
   end
 
@@ -70,17 +76,43 @@ describe "Create Subscriptions API" do
       })
       headers = {"CONTENT_TYPE" => "application/json"}
 
-      post api_v1_subscriptions_path, headers: headers, params: JSON.generate(          api_key: 'bad_key', subscription: subscription_params_3)
+      post api_v1_subscriptions_path, headers: headers, params: JSON.generate(api_key: 'bad_key', subscription: subscription_params_3)
 
       expect(response).not_to be_successful
-
-      subscription = JSON.parse(response.body, symbolize_names: true)
-
       expect(response.status).to eq(401)
 
-      expect(subscription).to have_key(:message)
-      expect(subscription[:message]).to be_a(String)
-      expect(subscription[:message]).to eq("Invalid api_key")
+      subscription_response = JSON.parse(response.body, symbolize_names: true)
+
+      expect(subscription_response).to have_key(:message)
+      expect(subscription_response[:message]).to be_a(String)
+      expect(subscription_response[:message]).to eq("Invalid api_key")
+    end
+  end
+
+  context 'given no key' do
+    it 'returns an error' do
+      customer_3 = create(:customer)
+      tea_3 = create(:tea)
+      subscription_params_3 = ({
+          title: 'title',
+          price: 'price',
+          status: 'status',
+          frequency: 'frequency',
+          customer_id: customer_3.id,
+          tea_id: tea_3.id
+      })
+      headers = {"CONTENT_TYPE" => "application/json"}
+
+      post api_v1_subscriptions_path, headers: headers, params: JSON.generate(subscription: subscription_params_3)
+
+      expect(response).not_to be_successful
+      expect(response.status).to eq(401)
+
+      subscription_response = JSON.parse(response.body, symbolize_names: true)
+
+      expect(subscription_response).to have_key(:message)
+      expect(subscription_response[:message]).to be_a(String)
+      expect(subscription_response[:message]).to eq("Invalid or missing api_key")
     end
   end
 end
