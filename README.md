@@ -41,7 +41,7 @@
 <li><a href="#api-endpoints">API Endpoints</a></li>
 <li><a href="#roadmap">Roadmap</a></li>
 <li><a href="#contact">Contact</a></li>
-<ii><a href="#contributing">Contributing</a></ii>
+<li><a href="#contributing">Contributing</a></li>
 <li><a href="#acknowledgments">Acknowledgments</a></li>
 </ol>
 </details>
@@ -92,7 +92,7 @@ rails db:{drop,create,migrate}
 rails s
 ```
 
-4. Now all you need to do is make a request to one of the endpoints[^2]. Documentation for all API Endpoints can be found below.
+4. Now all you need to do is make a request to one of the endpoints. Documentation for all API Endpoints can be found below.
 
 <p align="right">(<a href="#README">back to top</a>)</p>
 
@@ -100,7 +100,7 @@ rails s
 
 ## API Endpoints
 
-### GET[^3]
+### GET
 
 <details>
 <summary> <code>localhost:3000/api/v1/subscriptions?api_key=your_key_here</code> </summary>
@@ -311,10 +311,10 @@ Thanks again!
 
 ## Acknowledgments
 
-* Turing School of Software Design: [https://turing.edu/](https://turing.edu/)
-* DBdiagram.io: [https://dbdiagram.io/home](https://dbdiagram.io/home)
-* Best-README-Template: [https://github.com/othneildrew/Best-README-Template](https://github.com/othneildrew/Best-README-Template)
-* API-endpoints: [https://github.com/bufferapp/README/blob/master/billing/api-endpoints.md](https://github.com/bufferapp/README/blob/master/billing/api-endpoints.md)
+* [Turing School of Software Design](https://turing.edu/)
+* [DBdiagram.io](https://dbdiagram.io/home)
+* [Best-README-Template](https://github.com/othneildrew/Best-README-Template)
+* [API-endpoints](https://github.com/bufferapp/README/blob/master/billing/api-endpoints.md)
 
 <p align="right">(<a href="#README">back to top</a>)</p>
 
