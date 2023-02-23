@@ -74,7 +74,7 @@ To install and run on your personal computer you will need to do the following:
 
 ```sh
 bundle install
-rails db:{drop,create,migrate}
+rails db:{drop,create,migrate,seed}
 ```
 
 <br />
