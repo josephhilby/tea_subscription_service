@@ -2,9 +2,11 @@ module Api
 	module V1
 		class SubscriptionsController < ApplicationController
       before_action :customer_key
+      # Had to add this because I forgot the --api tag on creation and now have CSRF protection.
+      skip_before_action :verify_authenticity_token
 
 			def create
-        new_subscription = Subscription.find_or_initialize_by(subscription_params)
+        new_subscription = Subscription.new(subscription_params)
         customer_by_key = Customer.find_by(api_key: customer_key)
         if !customer_by_key
           render json: { message: 'Invalid api_key' }, status: 401
@@ -16,6 +18,7 @@ module Api
 			end
 
 			def destroy
+        # Missing the abality to make sure the subscription being destroyed, edited, showed belongs to the user.
         customer_by_key = Customer.find_by(api_key: customer_key)
 				if !customer_by_key
           render json: { message: 'Invalid api_key' }, status: 401
@@ -39,6 +42,7 @@ module Api
 			end
 
       def show
+        # Missing the abality to make sure the subscription being destroyed, edited, showed belongs to the user.
         subscription = Subscription.find_by(id: params[:id])
         customer_by_key = Customer.find_by(api_key: customer_key)
         if !customer_by_key
@@ -51,6 +55,7 @@ module Api
 			end
 
       def update
+        # Missing the abality to make sure the subscription being destroyed, edited, showed belongs to the user.
         customer_by_key = Customer.find_by(api_key: customer_key)
 				subscription = Subscription.find_by(id: params[:id])
         if !customer_by_key
@@ -69,10 +74,10 @@ module Api
 			end
 
       def customer_key
-        if params[:subscription]
-          params.require(:subscription)[:api_key]
+        if params[:api_key]
+          params[:api_key]
         else
-          render json: { message: 'Invalid or missing api_key in request body' }, status: 401
+          render json: { message: 'Invalid or missing api_key' }, status: 401
         end
       end
 		end
