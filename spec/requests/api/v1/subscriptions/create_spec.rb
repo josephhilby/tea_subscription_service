@@ -39,17 +39,17 @@ describe "Create Subscriptions API" do
 
   context 'given a non-valid params' do
     it 'returns an error' do
-      customer_2 = create(:customer)
-      tea_2 = create(:tea)
-      subscription_params_2 = ({
+      customer = create(:customer)
+      tea = create(:tea)
+      subscription_params = ({
           title: 'title',
           price: 'price',
-          customer_id: customer_2.id,
-          tea_id: tea_2.id
+          customer_id: customer.id,
+          tea_id: tea.id
       })
       headers = {"CONTENT_TYPE" => "application/json"}
 
-      post api_v1_subscriptions_path, headers: headers, params: JSON.generate(api_key: customer_2.api_key, subscription: subscription_params_2)
+      post api_v1_subscriptions_path, headers: headers, params: JSON.generate(api_key: customer.api_key, subscription: subscription_params)
 
       expect(response).not_to be_successful
       expect(response.status).to eq(400)
@@ -64,19 +64,19 @@ describe "Create Subscriptions API" do
 
   context 'given a non-valid key' do
     it 'returns an error' do
-      customer_3 = create(:customer)
-      tea_3 = create(:tea)
-      subscription_params_3 = ({
+      customer = create(:customer)
+      tea = create(:tea)
+      subscription_params = ({
           title: 'title',
           price: 'price',
           status: 'status',
           frequency: 'frequency',
-          customer_id: customer_3.id,
-          tea_id: tea_3.id
+          customer_id: customer.id,
+          tea_id: tea.id
       })
       headers = {"CONTENT_TYPE" => "application/json"}
 
-      post api_v1_subscriptions_path, headers: headers, params: JSON.generate(api_key: 'bad_key', subscription: subscription_params_3)
+      post api_v1_subscriptions_path, headers: headers, params: JSON.generate(api_key: 'bad_key', subscription: subscription_params)
 
       expect(response).not_to be_successful
       expect(response.status).to eq(401)
@@ -91,19 +91,19 @@ describe "Create Subscriptions API" do
 
   context 'given no key' do
     it 'returns an error' do
-      customer_3 = create(:customer)
-      tea_3 = create(:tea)
-      subscription_params_3 = ({
+      customer = create(:customer)
+      tea = create(:tea)
+      subscription_params = ({
           title: 'title',
           price: 'price',
           status: 'status',
           frequency: 'frequency',
-          customer_id: customer_3.id,
-          tea_id: tea_3.id
+          customer_id: customer.id,
+          tea_id: tea.id
       })
       headers = {"CONTENT_TYPE" => "application/json"}
 
-      post api_v1_subscriptions_path, headers: headers, params: JSON.generate(subscription: subscription_params_3)
+      post api_v1_subscriptions_path, headers: headers, params: JSON.generate(subscription: subscription_params)
 
       expect(response).not_to be_successful
       expect(response.status).to eq(401)

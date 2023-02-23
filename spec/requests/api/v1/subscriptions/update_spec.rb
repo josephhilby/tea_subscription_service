@@ -32,7 +32,7 @@ describe "Update Subscriptions API" do
       subscription_params = { title: "New Title" }
       headers = {"CONTENT_TYPE" => "application/json"}
 
-			patch api_v1_subscription_path(subscription_2), headers: headers, params: JSON.generate({api_key: customer.api_key, subscription: subscription_params})
+			patch api_v1_subscription_path(subscription_2), headers: headers, params: JSON.generate({api_key: customer_1.api_key, subscription: subscription_params})
 
 			expect(response).not_to be_successful
 			expect(response.status).to eq(401)
