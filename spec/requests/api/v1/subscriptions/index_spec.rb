@@ -1,20 +1,21 @@
 require 'rails_helper'
 
 describe 'Index Subscriptions API' do
+  let!(:customer_1) { create(:customer) }
+  let!(:tea_1) { create(:tea) }
+  let!(:tea_2) { create(:tea) }
+  let!(:tea_3) { create(:tea) }
+
+  let!(:customer_2) { create(:customer) }
+  let!(:tea_4) { create(:tea) }
+
+  let!(:customer_1_subscription) { create(:subscription, customer: customer_1, tea: tea_1) }
+  let!(:customer_2_subscription) { create(:subscription, customer: customer_2, tea: tea_3) }
+
   context 'with valid params' do
     it 'can GET a list of subscriptions' do
-      customer_1 = create(:customer)
-      tea_1 = create(:tea)
-      tea_2 = create(:tea)
-      tea_3 = create(:tea)
-
-      customer_2 = create(:customer)
-      tea_4 = create(:tea)
-
-      create(:subscription, customer: customer_1, tea: tea_1)
       create(:subscription, customer: customer_1, tea: tea_2)
       create(:subscription, customer: customer_1, tea: tea_3)
-      customer_2_subscription = create(:subscription, customer: customer_2, tea: tea_3)
 
       get api_v1_subscriptions_path, :params => { api_key: customer_1.api_key }
 
@@ -94,7 +95,6 @@ describe 'Index Subscriptions API' do
   context 'with no subscriptions' do
     it 'returns an error' do
       customer = create(:customer)
-      tea = create(:tea)
 
 			get api_v1_subscriptions_path, :params => { api_key: customer.api_key }
 
@@ -111,10 +111,6 @@ describe 'Index Subscriptions API' do
 
   context 'with a non-valid key' do
     it 'returns an error' do
-      customer = create(:customer)
-      tea = create(:tea)
-			subscription = create(:subscription, customer_id: customer.id, tea_id: tea.id)
-
 			get api_v1_subscriptions_path, :params => { api_key: 'bad key' }
 
 			expect(response).not_to be_successful
@@ -130,10 +126,6 @@ describe 'Index Subscriptions API' do
 
   context 'with no key' do
     it 'returns an error' do
-      customer = create(:customer)
-      tea = create(:tea)
-			subscription = create(:subscription, customer_id: customer.id, tea_id: tea.id)
-
 			get api_v1_subscriptions_path
 
 			expect(response).not_to be_successful

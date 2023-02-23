@@ -1,20 +1,26 @@
 require 'rails_helper'
 
 describe "Create Subscriptions API" do
+  let!(:customer) { create(:customer) }
+  let!(:tea) { create(:tea) }
+  let!(:subscription_params) { {
+        title: 'title',
+        price: 'price',
+        status: 'status',
+        frequency: 'frequency',
+        customer_id: customer.id,
+        tea_id: tea.id
+      } }
+  let!(:bad_params) { {
+        title: 'title',
+        price: 'price',
+        customer_id: customer.id,
+        tea_id: tea.id
+      } }
+  let!(:headers) { { "CONTENT_TYPE" => "application/json" } }
+
   context 'given valid params' do
     it "can POST a new subscription" do
-      customer = create(:customer)
-      tea = create(:tea)
-      subscription_params = ({
-          title: 'title',
-          price: 'price',
-          status: 'status',
-          frequency: 'frequency',
-          customer_id: customer.id,
-          tea_id: tea.id
-      })
-      headers = {"CONTENT_TYPE" => "application/json"}
-
       post api_v1_subscriptions_path, headers: headers, params: JSON.generate(api_key: customer.api_key, subscription: subscription_params)
 
       expect(response).to be_successful
@@ -37,19 +43,9 @@ describe "Create Subscriptions API" do
     end
   end
 
-  context 'given a non-valid params' do
+  context 'given non-valid params' do
     it 'returns an error' do
-      customer = create(:customer)
-      tea = create(:tea)
-      subscription_params = ({
-          title: 'title',
-          price: 'price',
-          customer_id: customer.id,
-          tea_id: tea.id
-      })
-      headers = {"CONTENT_TYPE" => "application/json"}
-
-      post api_v1_subscriptions_path, headers: headers, params: JSON.generate(api_key: customer.api_key, subscription: subscription_params)
+      post api_v1_subscriptions_path, headers: headers, params: JSON.generate(api_key: customer.api_key, subscription: bad_params)
 
       expect(response).not_to be_successful
       expect(response.status).to eq(400)
@@ -64,18 +60,6 @@ describe "Create Subscriptions API" do
 
   context 'given a non-valid key' do
     it 'returns an error' do
-      customer = create(:customer)
-      tea = create(:tea)
-      subscription_params = ({
-          title: 'title',
-          price: 'price',
-          status: 'status',
-          frequency: 'frequency',
-          customer_id: customer.id,
-          tea_id: tea.id
-      })
-      headers = {"CONTENT_TYPE" => "application/json"}
-
       post api_v1_subscriptions_path, headers: headers, params: JSON.generate(api_key: 'bad_key', subscription: subscription_params)
 
       expect(response).not_to be_successful
@@ -91,18 +75,6 @@ describe "Create Subscriptions API" do
 
   context 'given no key' do
     it 'returns an error' do
-      customer = create(:customer)
-      tea = create(:tea)
-      subscription_params = ({
-          title: 'title',
-          price: 'price',
-          status: 'status',
-          frequency: 'frequency',
-          customer_id: customer.id,
-          tea_id: tea.id
-      })
-      headers = {"CONTENT_TYPE" => "application/json"}
-
       post api_v1_subscriptions_path, headers: headers, params: JSON.generate(subscription: subscription_params)
 
       expect(response).not_to be_successful
