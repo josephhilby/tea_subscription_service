@@ -6,11 +6,8 @@ describe 'Show Subscriptions API' do
 			customer = create(:customer)
       tea = create(:tea)
 			subscription = create(:subscription, customer_id: customer.id, tea_id: tea.id)
-      subscription_params = { api_key: customer.api_key }
-      headers = {"CONTENT_TYPE" => "application/json"}
 
-      # why wont JSON.generate(subscription: subscription_params) work here like it will on every other spec file (only fails with get requests)?
-			get api_v1_subscription_path(subscription), headers: headers, :params => { :subscription => subscription_params }
+			get api_v1_subscription_path(subscription), :params => { api_key: customer.api_key }
 
 			expect(response).to be_successful
 
@@ -82,10 +79,8 @@ describe 'Show Subscriptions API' do
       customer = create(:customer)
       tea = create(:tea)
 			subscription = create(:subscription, customer_id: customer.id, tea_id: tea.id)
-      subscription_params = { api_key: customer.api_key }
-      headers = {"CONTENT_TYPE" => "application/json"}
 
-			get api_v1_subscription_path(Subscription.last.id + 1), headers: headers, :params => { :subscription => subscription_params }
+			get api_v1_subscription_path(Subscription.last.id + 1), :params => { api_key: customer.api_key }
 
 			expect(response).not_to be_successful
 
@@ -103,10 +98,8 @@ describe 'Show Subscriptions API' do
       customer = create(:customer)
       tea = create(:tea)
 			subscription = create(:subscription, customer_id: customer.id, tea_id: tea.id)
-      subscription_params = { api_key: 'bad key' }
-      headers = {"CONTENT_TYPE" => "application/json"}
 
-			get api_v1_subscription_path(subscription), headers: headers, :params => { :subscription => subscription_params }
+			get api_v1_subscription_path(subscription), :params => { api_key: 'bad key' }
 
 			expect(response).not_to be_successful
 

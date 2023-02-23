@@ -6,7 +6,6 @@ describe "Create Subscriptions API" do
       customer = create(:customer)
       tea = create(:tea)
       subscription_params = ({
-          api_key: customer.api_key,
           title: 'title',
           price: 'price',
           status: 'status',
@@ -16,7 +15,7 @@ describe "Create Subscriptions API" do
       })
       headers = {"CONTENT_TYPE" => "application/json"}
 
-      post api_v1_subscriptions_path, headers: headers, params: JSON.generate(subscription: subscription_params)
+      post api_v1_subscriptions_path, headers: headers, params: JSON.generate(api_key: customer.api_key, subscription: subscription_params)
 
       created_subscription = Subscription.last
 
@@ -36,7 +35,6 @@ describe "Create Subscriptions API" do
       customer_2 = create(:customer)
       tea_2 = create(:tea)
       subscription_params_2 = ({
-          api_key: customer_2.api_key,
           title: 'title',
           price: 'price',
           customer_id: customer_2.id,
@@ -44,7 +42,7 @@ describe "Create Subscriptions API" do
       })
       headers = {"CONTENT_TYPE" => "application/json"}
 
-      post api_v1_subscriptions_path, headers: headers, params: JSON.generate(subscription: subscription_params_2)
+      post api_v1_subscriptions_path, headers: headers, params: JSON.generate(api_key: customer_2.api_key, subscription: subscription_params_2)
 
       expect(response).not_to be_successful
 
@@ -63,7 +61,6 @@ describe "Create Subscriptions API" do
       customer_3 = create(:customer)
       tea_3 = create(:tea)
       subscription_params_3 = ({
-          api_key: 'bad_key',
           title: 'title',
           price: 'price',
           status: 'status',
@@ -73,7 +70,7 @@ describe "Create Subscriptions API" do
       })
       headers = {"CONTENT_TYPE" => "application/json"}
 
-      post api_v1_subscriptions_path, headers: headers, params: JSON.generate(subscription: subscription_params_3)
+      post api_v1_subscriptions_path, headers: headers, params: JSON.generate(          api_key: 'bad_key', subscription: subscription_params_3)
 
       expect(response).not_to be_successful
 

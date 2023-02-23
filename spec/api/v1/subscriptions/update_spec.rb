@@ -7,10 +7,10 @@ describe "Update Subscriptions API" do
       tea = create(:tea)
 			subscription = create(:subscription, customer_id: customer.id, tea_id: tea.id)
 			previous_title = Subscription.last.title
-			subscription_params = { api_key: customer.api_key, title: "New Title" }
+			subscription_params = { title: "New Title" }
 			headers = {"CONTENT_TYPE" => "application/json"}
 
-			patch api_v1_subscription_path(subscription), headers: headers, params: JSON.generate({subscription: subscription_params})
+			patch api_v1_subscription_path(subscription), headers: headers, params: JSON.generate({api_key: customer.api_key, subscription: subscription_params})
 
 			subscription_result = Subscription.find_by(id: subscription.id)
 
@@ -25,10 +25,10 @@ describe "Update Subscriptions API" do
 			customer = create(:customer)
       tea = create(:tea)
 			subscription = create(:subscription, customer_id: customer.id, tea_id: tea.id)
-      subscription_params = { api_key: customer.api_key, title: "New Title" }
+      subscription_params = { title: "New Title" }
       headers = {"CONTENT_TYPE" => "application/json"}
 
-			patch api_v1_subscription_path(Subscription.last.id + 1), headers: headers, params: JSON.generate({subscription: subscription_params})
+			patch api_v1_subscription_path(Subscription.last.id + 1), headers: headers, params: JSON.generate({api_key: customer.api_key, subscription: subscription_params})
 
 			expect(response).not_to be_successful
 
@@ -46,10 +46,10 @@ describe "Update Subscriptions API" do
 			customer = create(:customer)
       tea = create(:tea)
 			subscription = create(:subscription, customer_id: customer.id, tea_id: tea.id)
-      subscription_params = { api_key: "bad key", title: "New Title" }
+      subscription_params = { title: "New Title" }
       headers = {"CONTENT_TYPE" => "application/json"}
 
-			patch api_v1_subscription_path(subscription.id), headers: headers, params: JSON.generate({subscription: subscription_params})
+			patch api_v1_subscription_path(subscription.id), headers: headers, params: JSON.generate({api_key: "bad key", subscription: subscription_params})
 
 			expect(response).not_to be_successful
 
