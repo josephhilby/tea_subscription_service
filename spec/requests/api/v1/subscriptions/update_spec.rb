@@ -24,6 +24,27 @@ describe "Update Subscriptions API" do
 
 	context 'given a non-valid ID' do
 		it 'returns an error' do
+			customer_1 = create(:customer)
+			customer_2 = create(:customer)
+      tea = create(:tea)
+			subscription_1 = create(:subscription, customer_id: customer_1.id, tea_id: tea.id)
+			subscription_2 = create(:subscription, customer_id: customer_2.id, tea_id: tea.id)
+      subscription_params = { title: "New Title" }
+      headers = {"CONTENT_TYPE" => "application/json"}
+
+			patch api_v1_subscription_path(subscription_2), headers: headers, params: JSON.generate({api_key: customer.api_key, subscription: subscription_params})
+
+			expect(response).not_to be_successful
+			expect(response.status).to eq(401)
+
+			subscription_response = JSON.parse(response.body, symbolize_names: true)
+
+			expect(subscription_response).to have_key(:message)
+			expect(subscription_response[:message]).to be_a(String)
+			expect(subscription_response[:message]).to eq("Invalid api_key")
+		end
+
+		it 'returns an error' do
 			customer = create(:customer)
       tea = create(:tea)
 			subscription = create(:subscription, customer_id: customer.id, tea_id: tea.id)
@@ -54,10 +75,9 @@ describe "Update Subscriptions API" do
 			patch api_v1_subscription_path(subscription.id), headers: headers, params: JSON.generate({api_key: "bad key", subscription: subscription_params})
 
 			expect(response).not_to be_successful
+			expect(response.status).to eq(401)
 
 			subscription_response = JSON.parse(response.body, symbolize_names: true)
-
-			expect(response.status).to eq(401)
 
 			expect(subscription_response).to have_key(:message)
 			expect(subscription_response[:message]).to be_a(String)
@@ -76,10 +96,9 @@ describe "Update Subscriptions API" do
 			patch api_v1_subscription_path(subscription.id), headers: headers, params: JSON.generate({subscription: subscription_params})
 
 			expect(response).not_to be_successful
+			expect(response.status).to eq(401)
 
 			subscription_response = JSON.parse(response.body, symbolize_names: true)
-
-			expect(response.status).to eq(401)
 
 			expect(subscription_response).to have_key(:message)
 			expect(subscription_response[:message]).to be_a(String)

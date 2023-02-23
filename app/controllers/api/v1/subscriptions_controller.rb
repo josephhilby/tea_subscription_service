@@ -18,13 +18,13 @@ module Api
 			end
 
 			def destroy
-        # Missing the abality to make sure the subscription being destroyed, edited, showed belongs to the user.
         customer_by_key = Customer.find_by(api_key: customer_key)
-				if !customer_by_key
-          render json: { message: 'Invalid api_key' }, status: 401
-        elsif !Subscription.exists?(params[:id])
+        subscription = Subscription.find_by(id: params[:id])
+				if !subscription
           render json: { message: 'Not Found' }, status: 404
-        elsif Subscription.exists?(params[:id]) && customer_by_key
+        elsif !customer_by_key || subscription.customer_id != customer_by_key.id
+          render json: { message: 'Invalid api_key' }, status: 401
+        elsif subscription && customer_by_key
           Subscription.delete(params[:id])
 					render json: { }, status: 204
         end
@@ -42,26 +42,24 @@ module Api
 			end
 
       def show
-        # Missing the abality to make sure the subscription being destroyed, edited, showed belongs to the user.
-        subscription = Subscription.find_by(id: params[:id])
         customer_by_key = Customer.find_by(api_key: customer_key)
-        if !customer_by_key
-          render json: { message: 'Invalid api_key' }, status: 401
-        elsif !subscription
+        subscription = Subscription.find_by(id: params[:id])
+        if !subscription
           render json: { message: 'Not Found' }, status: 404
-        elsif customer_by_key && subscription
+        elsif !customer_by_key || subscription.customer_id != customer_by_key.id
+          render json: { message: 'Invalid api_key' }, status: 401
+        elsif subscription && customer_by_key
 				  render json: SubscriptionSerializer.new(subscription)
         end
 			end
 
       def update
-        # Missing the abality to make sure the subscription being destroyed, edited, showed belongs to the user.
         customer_by_key = Customer.find_by(api_key: customer_key)
 				subscription = Subscription.find_by(id: params[:id])
-        if !customer_by_key
-          render json: { message: 'Invalid api_key' }, status: 401
-        elsif !subscription
+        if !subscription
           render json: { message: 'Not Found' }, status: 404
+        elsif !customer_by_key || subscription.customer_id != customer_by_key.id
+          render json: { message: 'Invalid api_key' }, status: 401
         elsif subscription && customer_by_key
 					render json: SubscriptionSerializer.new(Subscription.update(params[:id], subscription_params))
         end
