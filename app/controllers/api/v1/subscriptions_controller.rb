@@ -1,6 +1,7 @@
 module Api
 	module V1
 		class SubscriptionsController < ApplicationController
+      before_action :check_params, only: [:create, :update]
       before_action :customer_key
       # Had to add this because I forgot the --api tag on creation and now have CSRF protection.
       skip_before_action :verify_authenticity_token
@@ -72,6 +73,12 @@ module Api
 			end
 
 			private
+
+      def check_params
+        if !params[:subscription] || params[:subscription].class != ActionController::Parameters || params[:subscription].empty?
+          render json: { message: "Check request body formatting" }, status: 400
+        end
+      end
 
 			def subscription_params
 				params.require(:subscription).permit(:title, :price, :status, :frequency, :customer_id, :tea_id)
