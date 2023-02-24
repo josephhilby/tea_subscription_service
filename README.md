@@ -259,6 +259,7 @@ Stretch Goals
 
 Super Stretch Goals
 
+* [ ] Setup GitHub Actions
 * [ ] Update docs with Swagger
 
 See the [open issues](https://github.com/josephhilby/tea_subscription_service/issues) for a full list of proposed features (and known issues).
