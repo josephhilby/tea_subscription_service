@@ -56,6 +56,32 @@ describe "Create Subscriptions API" do
       expect(subscription_response[:message]).to be_a(String)
       expect(subscription_response[:message]).to eq("Status can't be blank and Frequency can't be blank")
     end
+
+    it 'returns an error' do
+      post api_v1_subscriptions_path, headers: headers, params: JSON.generate(api_key: customer.api_key, subscription: "wrong data type")
+
+      expect(response).not_to be_successful
+      expect(response.status).to eq(400)
+
+      subscription_response = JSON.parse(response.body, symbolize_names: true)
+
+      expect(subscription_response).to have_key(:message)
+      expect(subscription_response[:message]).to be_a(String)
+      expect(subscription_response[:message]).to eq("Check request body formatting")
+    end
+
+    it 'returns an error' do
+      post api_v1_subscriptions_path, headers: headers, params: JSON.generate(api_key: customer.api_key)
+
+      expect(response).not_to be_successful
+      expect(response.status).to eq(400)
+
+      subscription_response = JSON.parse(response.body, symbolize_names: true)
+
+      expect(subscription_response).to have_key(:message)
+      expect(subscription_response[:message]).to be_a(String)
+      expect(subscription_response[:message]).to eq("Check request body formatting")
+    end
   end
 
   context 'given a non-valid key' do
