@@ -15,7 +15,7 @@
 <br />
 <div align="center">
 
-[![Contributors][contributors-shield]][contributors-url] [![Forks][forks-shield]][forks-url] [![Issues][issues-shield]][issues-url]
+[![RSpec Tests](https://github.com/josephhilby/tea_subscription_service/actions/workflows/RSpecCI.yml/badge.svg)](https://github.com/josephhilby/tea_subscription_service/actions/workflows/RSpecCI.yml)[![Contributors][contributors-shield]][contributors-url] [![Forks][forks-shield]][forks-url] [![Issues][issues-shield]][issues-url]
 
 <a href="https://github.com/josephhilby/tea_subscription_service">
 
@@ -312,14 +312,14 @@ Thanks again!
 
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/josephhilby/tea_subscription_service.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/josephhilby/tea_subscription_service.svg
 
 [contributors-url]: https://github.com/josephhilby/tea_subscription_service/graphs/contributors
 
-[forks-shield]: https://img.shields.io/github/forks/josephhilby/tea_subscription_service.svg?style=for-the-badge
+[forks-shield]: https://img.shields.io/github/forks/josephhilby/tea_subscription_service.svg
 
 [forks-url]: https://github.com/othneildrew/josephhilby/tea_subscription_service/network/members
 
-[issues-shield]: https://img.shields.io/github/issues/josephhilby/tea_subscription_service.svg?style=for-the-badge
+[issues-shield]: https://img.shields.io/github/issues/josephhilby/tea_subscription_service.svg
 
 [issues-url]: https://github.com/josephhilby/tea_subscription_service/issues
