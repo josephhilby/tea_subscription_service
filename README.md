@@ -92,13 +92,17 @@ rails db:{drop,create,migrate,seed}
 rails s
 ```
 
-4. Now all you need to do is make a request to one of the endpoints. Documentation for all API Endpoints can be found below.
+4. Now all you need to do is check the created users api_keys and make a request to one of the endpoints. Documentation for all API Endpoints can be found below.
 
 <p align="right">(<a href="#README">back to top</a>)</p>
 
 <!-- ENDPOINTS -->
 
 ## API Endpoints
+
+Below is a sample list of endpoints. If you would like to see the full set of endpoints with documentation, follow [this_link](https://documenter.getpostman.com/view/24550191/2s93CPpBWY) to see this projects Postman Documenter.
+
+Note: The api_keys in Documenter are no longer active. You will need to seed your local database and check what was generated for each user.
 
 ### GET
 
