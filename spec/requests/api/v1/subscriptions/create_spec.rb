@@ -1,27 +1,34 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-describe "Create Subscriptions API" do
+describe 'Create Subscriptions API' do
   let!(:customer) { create(:customer) }
   let!(:tea) { create(:tea) }
-  let!(:subscription_params) { {
-        title: 'title',
-        price: 'price',
-        status: 'status',
-        frequency: 'frequency',
-        customer_id: customer.id,
-        tea_id: tea.id
-      } }
-  let!(:bad_params) { {
-        title: 'title',
-        price: 'price',
-        customer_id: customer.id,
-        tea_id: tea.id
-      } }
-  let!(:headers) { { "CONTENT_TYPE" => "application/json" } }
+  let!(:subscription_params) do
+    {
+      title: 'title',
+      price: 'price',
+      status: 'status',
+      frequency: 'frequency',
+      customer_id: customer.id,
+      tea_id: tea.id
+    }
+  end
+  let!(:bad_params) do
+    {
+      title: 'title',
+      price: 'price',
+      customer_id: customer.id,
+      tea_id: tea.id
+    }
+  end
+  let!(:headers) { { 'CONTENT_TYPE' => 'application/json' } }
 
   context 'given valid params' do
-    it "can POST a new subscription" do
-      post api_v1_subscriptions_path, headers: headers, params: JSON.generate(api_key: customer.api_key, subscription: subscription_params)
+    it 'can POST a new subscription' do
+      post api_v1_subscriptions_path, headers: headers,
+                                      params: JSON.generate(api_key: customer.api_key, subscription: subscription_params)
 
       expect(response).to be_successful
       expect(response.status).to eq(201)
@@ -30,7 +37,7 @@ describe "Create Subscriptions API" do
 
       expect(subscription_response).to have_key(:message)
       expect(subscription_response[:message]).to be_a(String)
-      expect(subscription_response[:message]).to eq("Subscription added successfully")
+      expect(subscription_response[:message]).to eq('Subscription added successfully')
 
       created_subscription = Subscription.last
 
@@ -45,7 +52,8 @@ describe "Create Subscriptions API" do
 
   context 'given non-valid params' do
     it 'returns an error' do
-      post api_v1_subscriptions_path, headers: headers, params: JSON.generate(api_key: customer.api_key, subscription: bad_params)
+      post api_v1_subscriptions_path, headers: headers,
+                                      params: JSON.generate(api_key: customer.api_key, subscription: bad_params)
 
       expect(response).not_to be_successful
       expect(response.status).to eq(400)
@@ -58,7 +66,8 @@ describe "Create Subscriptions API" do
     end
 
     it 'returns an error' do
-      post api_v1_subscriptions_path, headers: headers, params: JSON.generate(api_key: customer.api_key, subscription: { bad: 'data' } )
+      post api_v1_subscriptions_path, headers: headers,
+                                      params: JSON.generate(api_key: customer.api_key, subscription: { bad: 'data' })
 
       expect(response).not_to be_successful
       expect(response.status).to eq(400)
@@ -71,7 +80,8 @@ describe "Create Subscriptions API" do
     end
 
     it 'returns an error' do
-      post api_v1_subscriptions_path, headers: headers, params: JSON.generate(api_key: customer.api_key, subscription: "wrong data type")
+      post api_v1_subscriptions_path, headers: headers,
+                                      params: JSON.generate(api_key: customer.api_key, subscription: 'wrong data type')
 
       expect(response).not_to be_successful
       expect(response.status).to eq(400)
@@ -80,7 +90,7 @@ describe "Create Subscriptions API" do
 
       expect(subscription_response).to have_key(:message)
       expect(subscription_response[:message]).to be_a(String)
-      expect(subscription_response[:message]).to eq("Check request body formatting")
+      expect(subscription_response[:message]).to eq('Check request body formatting')
     end
 
     it 'returns an error' do
@@ -93,13 +103,14 @@ describe "Create Subscriptions API" do
 
       expect(subscription_response).to have_key(:message)
       expect(subscription_response[:message]).to be_a(String)
-      expect(subscription_response[:message]).to eq("Check request body formatting")
+      expect(subscription_response[:message]).to eq('Check request body formatting')
     end
   end
 
   context 'given a non-valid key' do
     it 'returns an error' do
-      post api_v1_subscriptions_path, headers: headers, params: JSON.generate(api_key: 'bad_key', subscription: subscription_params)
+      post api_v1_subscriptions_path, headers: headers,
+                                      params: JSON.generate(api_key: 'bad_key', subscription: subscription_params)
 
       expect(response).not_to be_successful
       expect(response.status).to eq(401)
@@ -108,7 +119,7 @@ describe "Create Subscriptions API" do
 
       expect(subscription_response).to have_key(:message)
       expect(subscription_response[:message]).to be_a(String)
-      expect(subscription_response[:message]).to eq("Invalid api_key")
+      expect(subscription_response[:message]).to eq('Invalid api_key')
     end
   end
 
@@ -123,7 +134,7 @@ describe "Create Subscriptions API" do
 
       expect(subscription_response).to have_key(:message)
       expect(subscription_response[:message]).to be_a(String)
-      expect(subscription_response[:message]).to eq("Invalid or missing api_key")
+      expect(subscription_response[:message]).to eq('Invalid or missing api_key')
     end
   end
 end

@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class TeaSerializer
-	include JSONAPI::Serializer
+  include JSONAPI::Serializer
 
   set_type :tea
   set_id :id

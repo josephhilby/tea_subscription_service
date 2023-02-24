@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class SubscriptionSerializer
-	include JSONAPI::Serializer
+  include JSONAPI::Serializer
 
   set_type :subscription
   set_id :id
