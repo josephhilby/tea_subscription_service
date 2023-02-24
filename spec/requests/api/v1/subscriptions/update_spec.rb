@@ -9,7 +9,7 @@ describe "Update Subscriptions API" do
   let!(:subscription_params) { { title: "New Title" } }
   let!(:headers) { {"CONTENT_TYPE" => "application/json"} }
 
-	context 'given a valid ID and Key' do
+	context 'given a valid ID, Key, and params' do
 		it "can PATCH an existing subscription" do
       previous_title = subscription_1.title
 			patch api_v1_subscription_path(subscription_1), headers: headers, params: JSON.generate({api_key: customer_1.api_key, subscription: subscription_params})
@@ -84,6 +84,34 @@ describe "Update Subscriptions API" do
 			expect(subscription_result.title).to eq("New Title")
 		end
 	end
+
+  context 'given non-valid params' do
+    it 'returns an error' do
+      patch api_v1_subscription_path(subscription_1), headers: headers, params: JSON.generate(api_key: customer_1.api_key, subscription: "wrong data type")
+
+      expect(response).not_to be_successful
+      expect(response.status).to eq(400)
+
+      subscription_response = JSON.parse(response.body, symbolize_names: true)
+
+      expect(subscription_response).to have_key(:message)
+      expect(subscription_response[:message]).to be_a(String)
+      expect(subscription_response[:message]).to eq("Check request body formatting")
+    end
+
+    it 'returns an error' do
+      patch api_v1_subscription_path(subscription_1), headers: headers, params: JSON.generate(api_key: customer_1.api_key)
+
+      expect(response).not_to be_successful
+      expect(response.status).to eq(400)
+
+      subscription_response = JSON.parse(response.body, symbolize_names: true)
+
+      expect(subscription_response).to have_key(:message)
+      expect(subscription_response[:message]).to be_a(String)
+      expect(subscription_response[:message]).to eq("Check request body formatting")
+    end
+  end
 
 	context 'given a non-valid ID' do
 		it 'returns an error' do
