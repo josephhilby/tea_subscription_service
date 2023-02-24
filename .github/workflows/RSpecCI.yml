@@ -1,55 +1,57 @@
 name: RSpec Tests
 
 on:
-  push:
-    branches: [ master ]
   pull_request:
-    branches: [ master ]
+    branches:
+      - 'main'
+  push:
+    branches:
+      - 'main'
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     services:
       postgres:
-        image: postgres:14.6
+        image: postgres
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
         ports:
           - 5432:5432
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-        # needed because the postgres container does not provide a healthcheck
-        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     steps:
-      - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
 
-      - uses: actions/setup-ruby@v1
-        with:
-          ruby-version: 2.7.4
+    - uses: ruby/setup-ruby@v1
+      with:
+        bundler-cache: true
 
-      - name: Install dependent libraries
-        run: sudo apt-get install libpq-dev
+    - name: Install PostgreSQL client
+      run: |
+        sudo apt-get -yqq install libpq-dev
 
-      - name: Bundle install
-        run: |
-          bundle install
+    - name: Build App
+      env:
+        PGHOST: localhost
+        PGUSER: postgres
+        PGPASSWORD: postgres
+        RAILS_ENV: test
+      run: |
+        bin/rails db:setup
 
-      - name: Set up Database
-        run: |
-          cp config/database.yml.github-actions config/database
-          bundle exec rails db:setup
-          bundle exec rspec spec
-        env:
-          RAILS_ENV: test
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-
-      - name: Run RSpec
-        run: COVERAGE=true bundle exec rspec  --require rails_helper
-        env:
-          RAILS_ENV: test
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
+    - name: Run Tests
+      env:
+        PGHOST: localhost
+        PGUSER: postgres
+        PGPASSWORD: postgres
+        RAILS_ENV: test
+      run: |
+        bundle exec rspec spec
 
