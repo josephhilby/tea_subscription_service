@@ -52,8 +52,6 @@
 
 This project was a take home tech challenge to create a ***Ruby on Rails*** API from the provided [document](https://mod4.turing.edu/projects/take_home/take_home_be).
 
-<p align="right">(<a href="#README">back to top</a>)</p>
-
 <!-- GETTING STARTED -->
 
 ## Getting Started
@@ -93,8 +91,6 @@ rails s
 ```
 
 4. Now all you need to do is check the created users api_keys and make a request to one of the endpoints. Documentation for all API Endpoints can be found below.
-
-<p align="right">(<a href="#README">back to top</a>)</p>
 
 <!-- ENDPOINTS -->
 
@@ -239,10 +235,6 @@ Note: The api_keys in Documenter are no longer active. You will need to seed you
 
 </details>
 
-
-
-<p align="right">(<a href="#README">back to top</a>)</p>
-
 <!-- ROADMAP -->
 
 ## Roadmap
@@ -263,13 +255,10 @@ Stretch Goals
 
 Super Stretch Goals
 
-* [ ] Setup GitHub Actions
+* [x] Setup GitHub Actions
 * [x] Update docs with Postman Documenter
 
 See the [open issues](https://github.com/josephhilby/tea_subscription_service/issues) for a full list of proposed features (and known issues).
-
-<p align="right">(<a href="#README">back to top</a>)</p>
-
 
 <!-- CONTACT -->
 
@@ -292,8 +281,6 @@ See the [open issues](https://github.com/josephhilby/tea_subscription_service/is
 </table>
 </div>
 
-<p align="right">(<a href="#README">back to top</a>)</p>
-
 <!-- CONTRIBUTING -->
 
 ## Contributing
@@ -309,8 +296,6 @@ Please fork the repo, create your branch, and create a pull request. You can als
 5. Open a Pull Request
 
 Thanks again!
-
-<p align="right">(<a href="#README">back to top</a>)</p>
 
 <!-- ACKNOWLEDGMENTS -->
 
