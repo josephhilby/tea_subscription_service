@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe 'Show Subscriptions API' do
@@ -7,16 +9,16 @@ describe 'Show Subscriptions API' do
   let!(:subscription_1) { create(:subscription, customer: customer_1, tea: tea) }
   let!(:subscription_2) { create(:subscription, customer: customer_2, tea: tea) }
 
-	context 'given a valid params' do
-		it 'can GET one subscription by ID' do
-			get api_v1_subscription_path(subscription_1), :params => { api_key: customer_1.api_key }
+  context 'given a valid params' do
+    it 'can GET one subscription by ID' do
+      get api_v1_subscription_path(subscription_1), params: { api_key: customer_1.api_key }
 
-			expect(response).to be_successful
+      expect(response).to be_successful
       expect(response.status).to eq(200)
 
-			subscription_response = JSON.parse(response.body, symbolize_names: true)
+      subscription_response = JSON.parse(response.body, symbolize_names: true)
 
-		  expect(subscription_response).to be_an(Hash)
+      expect(subscription_response).to be_an(Hash)
       expect(subscription_response.count).to eq(1)
       expect(subscription_response[:data]).to be_an(Hash)
 
@@ -75,61 +77,61 @@ describe 'Show Subscriptions API' do
       expect(subscription_response[:data][:relationships][:tea][:data]).to have_key(:type)
       expect(subscription_response[:data][:relationships][:tea][:data][:type]).to be_an(String)
     end
-	end
+  end
 
-	context 'given a non-valid ID' do
-		it 'returns an error' do
-			get api_v1_subscription_path(subscription_2), :params => { api_key: customer_1.api_key }
+  context 'given a non-valid ID' do
+    it 'returns an error' do
+      get api_v1_subscription_path(subscription_2), params: { api_key: customer_1.api_key }
 
-			expect(response).not_to be_successful
-			expect(response.status).to eq(401)
+      expect(response).not_to be_successful
+      expect(response.status).to eq(401)
 
-			subscriptions_response = JSON.parse(response.body, symbolize_names: true)
+      subscriptions_response = JSON.parse(response.body, symbolize_names: true)
 
-			expect(subscriptions_response).to have_key(:message)
-			expect(subscriptions_response[:message]).to be_a(String)
-			expect(subscriptions_response[:message]).to eq("Invalid api_key")
-		end
+      expect(subscriptions_response).to have_key(:message)
+      expect(subscriptions_response[:message]).to be_a(String)
+      expect(subscriptions_response[:message]).to eq('Invalid api_key')
+    end
 
-		it 'returns an error' do
-			get api_v1_subscription_path(Subscription.last.id + 1), :params => { api_key: customer_1.api_key }
+    it 'returns an error' do
+      get api_v1_subscription_path(Subscription.last.id + 1), params: { api_key: customer_1.api_key }
 
-			expect(response).not_to be_successful
-			expect(response.status).to eq(404)
+      expect(response).not_to be_successful
+      expect(response.status).to eq(404)
 
-			subscriptions_response = JSON.parse(response.body, symbolize_names: true)
+      subscriptions_response = JSON.parse(response.body, symbolize_names: true)
 
-			expect(subscriptions_response).to have_key(:message)
-			expect(subscriptions_response[:message]).to be_a(String)
-			expect(subscriptions_response[:message]).to eq("Not Found")
-		end
-	end
+      expect(subscriptions_response).to have_key(:message)
+      expect(subscriptions_response[:message]).to be_a(String)
+      expect(subscriptions_response[:message]).to eq('Not Found')
+    end
+  end
 
-	context 'given a non-valid key' do
-		it 'returns an error' do
-			get api_v1_subscription_path(subscription_1), :params => { api_key: 'bad key' }
+  context 'given a non-valid key' do
+    it 'returns an error' do
+      get api_v1_subscription_path(subscription_1), params: { api_key: 'bad key' }
 
-			expect(response).not_to be_successful
-			expect(response.status).to eq(401)
+      expect(response).not_to be_successful
+      expect(response.status).to eq(401)
 
-			subscriptions_response = JSON.parse(response.body, symbolize_names: true)
+      subscriptions_response = JSON.parse(response.body, symbolize_names: true)
 
-			expect(subscriptions_response).to have_key(:message)
-			expect(subscriptions_response[:message]).to eq("Invalid api_key")
-		end
-	end
+      expect(subscriptions_response).to have_key(:message)
+      expect(subscriptions_response[:message]).to eq('Invalid api_key')
+    end
+  end
 
-	context 'given no key' do
-		it 'returns an error' do
-			get api_v1_subscription_path(subscription_1)
+  context 'given no key' do
+    it 'returns an error' do
+      get api_v1_subscription_path(subscription_1)
 
-			expect(response).not_to be_successful
-			expect(response.status).to eq(401)
+      expect(response).not_to be_successful
+      expect(response.status).to eq(401)
 
-			subscriptions_response = JSON.parse(response.body, symbolize_names: true)
+      subscriptions_response = JSON.parse(response.body, symbolize_names: true)
 
-			expect(subscriptions_response).to have_key(:message)
-			expect(subscriptions_response[:message]).to eq("Invalid or missing api_key")
-		end
-	end
+      expect(subscriptions_response).to have_key(:message)
+      expect(subscriptions_response[:message]).to eq('Invalid or missing api_key')
+    end
+  end
 end

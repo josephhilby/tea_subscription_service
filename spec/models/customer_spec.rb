@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Customer, type: :model do
@@ -6,7 +8,7 @@ RSpec.describe Customer, type: :model do
     it { should validate_uniqueness_of(:email) }
   end
 
-  describe "relationships" do
+  describe 'relationships' do
     it { should have_many :subscriptions }
     it { should have_many(:teas).through :subscriptions }
   end
