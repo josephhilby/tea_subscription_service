@@ -1,14 +1,12 @@
 module Api
 	module V1
 		class SubscriptionsController < ApplicationController
+      before_action :check_params, only: [:create, :update]
       before_action :customer_key
       # Had to add this because I forgot the --api tag on creation and now have CSRF protection.
       skip_before_action :verify_authenticity_token
 
 			def create
-        # Need to do a better job to check params (no params), validations are catching bad params.
-        # Suggest check data layout prior to strong params (like in the index and show test).
-        # This bug was caught with postman testing
         new_subscription = Subscription.new(subscription_params)
         customer_by_key = Customer.find_by(api_key: customer_key)
         if !customer_by_key
@@ -57,9 +55,6 @@ module Api
 			end
 
       def update
-        # Need to do a better job to check params (no params and bad params), validations are catching this for create. You don't have that with update.
-        # Suggest check data layout prior to strong params (like in the index and show test).
-        # This bug was caught with postman testing
         customer_by_key = Customer.find_by(api_key: customer_key)
 				subscription = Subscription.find_by(id: params[:id])
         if !subscription
@@ -72,6 +67,12 @@ module Api
 			end
 
 			private
+
+      def check_params
+        if !params[:subscription] || params[:subscription].class != ActionController::Parameters || params[:subscription].empty?
+          render json: { message: "Check request body formatting" }, status: 400
+        end
+      end
 
 			def subscription_params
 				params.require(:subscription).permit(:title, :price, :status, :frequency, :customer_id, :tea_id)
