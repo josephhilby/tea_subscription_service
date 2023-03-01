@@ -15,7 +15,7 @@
 <br />
 <div align="center">
 
-[![RSpec Tests](https://github.com/josephhilby/tea_subscription_service/actions/workflows/RSpecCI.yml/badge.svg)](https://github.com/josephhilby/tea_subscription_service/actions/workflows/RSpecCI.yml)[![Contributors][contributors-shield]][contributors-url] [![Forks][forks-shield]][forks-url] [![Issues][issues-shield]][issues-url]
+[![RSpec Tests][test-shield]][test-url][![Contributors][contributors-shield]][contributors-url] [![Forks][forks-shield]][forks-url] [![Issues][issues-shield]][issues-url]
 
 <a href="https://github.com/josephhilby/tea_subscription_service">
 
@@ -267,15 +267,22 @@ See the [open issues](https://github.com/josephhilby/tea_subscription_service/is
 <div align="center">
 <table>
 <tr>
-<td><img width="150px" src="https://media.licdn.com/dms/image/D5603AQFBwBZWgwT9Uw/profile-displayphoto-shrink_200_200/0/1677597181341?e=1683158400&v=beta&t=qYUGd93vSZFbnKWishpx7lFyrnghqqdKjU8xKplS3oM"></td>
+<th width='20%'>Joseph Hilby</th>
+<th></th>
 </tr>
 <tr>
-<td>Joseph Hilby</td>
-</tr>
-<tr>
+<td><img width="150px" src="https://media.licdn.com/dms/image/D5603AQFBwBZWgwT9Uw/profile-displayphoto-shrink_200_200/0/1677597181341?e=1683158400&v=beta&t=qYUGd93vSZFbnKWishpx7lFyrnghqqdKjU8xKplS3oM">
+
+[![GitHub: josephhilby][joe-github-follow-badge]][joe-GitHub] <br>
+[![LinkedIn: josephmhilby][linkedin-badge]][joe-LinkedIn]
+
+</td>
 <td>
-<a href="https://github.com/josephhilby">GitHub</a><br>
-<a href="https://www.linkedin.com/in/josephmhilby/">LinkedIn</a>
+<p>
+My goal in this project was to quickly setup a functioning API in accordance with the provided document, more about that in the '#About The Project' section, and really challenge myself with stretch goals, more about those in the '#Roadmap' section. <br><br>
+I am really happy with the result. I had three days to complete this project and in that time I was able to see all the progress I had made as a softwere engineere. Both in my understanding of coding and the processes I had created to quickly create a quality product (shout out to Obsidian).<br/><br>
+If you have any questions about what I did or how I did it, please reach out!
+</p>
 </td>
 </tr>
 </table>
@@ -311,15 +318,29 @@ Thanks again!
 <!-- MARKDOWN LINKS & IMAGES -->
 
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+<!-- Tests Shield -->
+[test-shield]: https://github.com/josephhilby/tea_subscription_service/actions/workflows/RSpecCI.yml/badge.svg
+[test-url]: https://github.com/josephhilby/tea_subscription_service/actions/workflows/RSpecCI.yml
 
+<!-- Contributors Shield -->
 [contributors-shield]: https://img.shields.io/github/contributors/josephhilby/tea_subscription_service.svg
-
 [contributors-url]: https://github.com/josephhilby/tea_subscription_service/graphs/contributors
 
+<!-- Forks Shield -->
 [forks-shield]: https://img.shields.io/github/forks/josephhilby/tea_subscription_service.svg
-
 [forks-url]: https://github.com/othneildrew/josephhilby/tea_subscription_service/network/members
 
+<!-- Issues Shield -->
 [issues-shield]: https://img.shields.io/github/issues/josephhilby/tea_subscription_service.svg
-
 [issues-url]: https://github.com/josephhilby/tea_subscription_service/issues
+
+<!-- LinkedIn Badges -->
+[joe-LinkedIn]: https://www.linkedin.com/in/josephmhilby/
+[linkedin-badge]: https://img.shields.io/badge/LinkedIn-%23?style=flat&logo=Linkedin&logoColor=black&color=0A66C2
+
+<!-- GitHub Badges -->
+[joe-GitHub]: https://github.com/josephhilby
+[joe-github-follow-badge]: https://img.shields.io/github/followers/josephhilby?label=GitHub&style=social
+
+
+
