@@ -267,7 +267,7 @@ See the [open issues](https://github.com/josephhilby/tea_subscription_service/is
 <div align="center">
 <table>
 <tr>
-<td><img width="150px" src="https://media.licdn.com/dms/image/C4E03AQEdZUKFgryaqg/profile-displayphoto-shrink_800_800/0/1567961066772?e=1680739200&v=beta&t=TFQt8RiDDMpJHbytApiShBpLVCCZlfeuUwLffp95tG8"></td>
+<td><img width="150px" src="https://media.licdn.com/dms/image/D5603AQFBwBZWgwT9Uw/profile-displayphoto-shrink_200_200/0/1677597181341?e=1683158400&v=beta&t=qYUGd93vSZFbnKWishpx7lFyrnghqqdKjU8xKplS3oM"></td>
 </tr>
 <tr>
 <td>Joseph Hilby</td>
