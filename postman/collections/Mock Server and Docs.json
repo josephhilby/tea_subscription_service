@@ -1,0 +1,2045 @@
+{
+	"info": {
+		"_postman_id": "b444fd43-67ae-477d-95fe-f42c80047ae8",
+		"name": "Mock Server and Docs",
+		"description": "This is an API created as part of a technical challenge. The challenge can be found [here](https://mod4.turing.edu/projects/take_home/take_home_be). The GitHub repo for this API is [here](https://github.com/josephhilby/tea_subscription_service).",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_uid": "24550191-b444fd43-67ae-477d-95fe-f42c80047ae8"
+	},
+	"item": [
+		{
+			"name": "/api/v1/subscriptions(/:id)",
+			"id": "0cde7b05-b66d-4af9-960d-4f4be142042a",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/subscriptions?api_key=user_key",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"subscriptions"
+					],
+					"query": [
+						{
+							"key": "api_key",
+							"value": "user_key"
+						}
+					]
+				},
+				"description": "This endpoint lets a select customer pull all their subscriptions or get a select subscription by subscription_id."
+			},
+			"response": [
+				{
+					"id": "358ba3d4-d010-4dec-b2d9-37ad44538bb0",
+					"name": "200 OK",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/subscriptions?api_key=user_key",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"subscriptions"
+							],
+							"query": [
+								{
+									"key": "api_key",
+									"value": "user_key"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-store, must-revalidate, private, max-age=0"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "19b0b097-a93d-48ab-a7d8-c8282f166594"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.210995"
+						},
+						{
+							"key": "X-MiniProfiler-Original-Cache-Control",
+							"value": "max-age=0, private, must-revalidate"
+						},
+						{
+							"key": "X-MiniProfiler-Ids",
+							"value": "qpravm015p88hjfh5ujf,72vbv1jjwivj6oiffdrd,4utprzlyp96nh2ry98f5,2y99l53mjyeawi9cmjou,1rk6o4j099bnujc9u14s,nt3ff5z3y12nzs444n4v,zxbnn3x1cmxwsr6xwir2,okys5s2omf7chcv0se5f"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "__profilin=p%3Dt; path=/; HttpOnly; SameSite=Lax"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": [\n        {\n            \"id\": \"1\",\n            \"type\": \"subscription\",\n            \"attributes\": {\n                \"title\": \"Essential\",\n                \"price\": \"6.93\",\n                \"status\": \"Active\",\n                \"frequency\": \"Weekly\"\n            },\n            \"relationships\": {\n                \"customer\": {\n                    \"data\": {\n                        \"id\": \"1\",\n                        \"type\": \"customer\"\n                    }\n                },\n                \"tea\": {\n                    \"data\": {\n                        \"id\": \"1\",\n                        \"type\": \"tea\"\n                    }\n                }\n            }\n        },\n        {\n            \"id\": \"2\",\n            \"type\": \"subscription\",\n            \"attributes\": {\n                \"title\": \"Business\",\n                \"price\": \"1.18\",\n                \"status\": \"Blocked\",\n                \"frequency\": \"Annual\"\n            },\n            \"relationships\": {\n                \"customer\": {\n                    \"data\": {\n                        \"id\": \"1\",\n                        \"type\": \"customer\"\n                    }\n                },\n                \"tea\": {\n                    \"data\": {\n                        \"id\": \"2\",\n                        \"type\": \"tea\"\n                    }\n                }\n            }\n        },\n        {\n            \"id\": \"3\",\n            \"type\": \"subscription\",\n            \"attributes\": {\n                \"title\": \"Standard\",\n                \"price\": \"1.89\",\n                \"status\": \"Blocked\",\n                \"frequency\": \"Quinquennal\"\n            },\n            \"relationships\": {\n                \"customer\": {\n                    \"data\": {\n                        \"id\": \"1\",\n                        \"type\": \"customer\"\n                    }\n                },\n                \"tea\": {\n                    \"data\": {\n                        \"id\": \"3\",\n                        \"type\": \"tea\"\n                    }\n                }\n            }\n        }\n    ]\n}"
+				},
+				{
+					"id": "9afe8bff-4ea8-430f-9980-808ae0e4e002",
+					"name": "401 Bad Key",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/subscriptions?api_key=bad_key",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"subscriptions"
+							],
+							"query": [
+								{
+									"key": "api_key",
+									"value": "bad_key"
+								}
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "4e47de5c-f21f-48ea-9d70-a0c7251d33ec"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.132778"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "__profilin=p%3Dt; path=/; HttpOnly; SameSite=Lax"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Invalid api_key\"\n}"
+				},
+				{
+					"id": "9db7fb51-6613-485e-b16a-c879a293faf6",
+					"name": "401 No Key",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/subscriptions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"subscriptions"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "e261b771-75f0-4a36-bec7-84a4a0ec011e"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.015670"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "__profilin=p%3Dt; path=/; HttpOnly; SameSite=Lax"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Invalid or missing api_key\"\n}"
+				},
+				{
+					"id": "afb84515-8306-4f55-a600-71c942eb0a78",
+					"name": "404 No Subscriptions",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/subscriptions?api_key=user_key",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"subscriptions"
+							],
+							"query": [
+								{
+									"key": "api_key",
+									"value": "user_key"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "42148f9e-3fdd-4a46-8c24-afe024d52832"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.212795"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "__profilin=p%3Dt; path=/; HttpOnly; SameSite=Lax"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Not Found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "api/v1/subscriptions",
+			"id": "bbfc038a-f1bd-4b5a-935a-068ebbe40fb0",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{   \"subscription\": {\n        \"title\": \"title\",\n        \"price\": \"price\",\n        \"status\": \"status\",\n        \"frequency\": \"frequency\",\n        \"customer_id\": 1,\n        \"tea_id\": 1\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/subscriptions?api_key=user_key",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"subscriptions"
+					],
+					"query": [
+						{
+							"key": "api_key",
+							"value": "user_key"
+						}
+					]
+				},
+				"description": "This endpoint lets a select customer create a new subscription."
+			},
+			"response": [
+				{
+					"id": "a52cba26-7acd-4872-8a4d-8b383eb80cba",
+					"name": "201 Created",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{   \"subscription\": {\n        \"title\": \"title\",\n        \"price\": \"price\",\n        \"status\": \"status\",\n        \"frequency\": \"frequency\",\n        \"customer_id\": 1,\n        \"tea_id\": 1\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/subscriptions?api_key=user_key",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"subscriptions"
+							],
+							"query": [
+								{
+									"key": "api_key",
+									"value": "user_key"
+								}
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-store, must-revalidate, private, max-age=0"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "f8e7c072-9935-4bb3-971a-bcb7d76c6bc5"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.157450"
+						},
+						{
+							"key": "X-MiniProfiler-Original-Cache-Control",
+							"value": "max-age=0, private, must-revalidate"
+						},
+						{
+							"key": "X-MiniProfiler-Ids",
+							"value": "lkrw87h8n8oqocio50ym,72vbv1jjwivj6oiffdrd,4utprzlyp96nh2ry98f5,2y99l53mjyeawi9cmjou,1rk6o4j099bnujc9u14s,nt3ff5z3y12nzs444n4v,zxbnn3x1cmxwsr6xwir2,okys5s2omf7chcv0se5f,qpravm015p88hjfh5ujf,chipgoucnp3n04b9ha06,kkt3pbny1p6t4rd2lid7,qkz4r2894rw1lz3jzcco,lt1a42vxx6ztjrblsbtv,gf1iriwommo0f16sd1cd,rlkqqu4x8523zkxu7eb1,cnml5i6300vzz2hjt1yn,ku4zeoj1raf0x4tfslax,k7ju68ieot5g7f90ioow,lpcd7929qqx1wkq3bfu,d6z0xlxkakjqaot4ro1x"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "__profilin=p%3Dt; path=/; HttpOnly; SameSite=Lax"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Subscription added successfully\"\n}"
+				},
+				{
+					"id": "ed295687-a514-4ac6-87cf-9891136910dc",
+					"name": "400 Bad Params",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{   \"subscription\": {\n        \"status\": \"status\",\n        \"frequency\": \"frequency\",\n        \"customer_id\": 1,\n        \"tea_id\": 1\n    }\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/subscriptions?api_key=bad_key",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"subscriptions"
+							],
+							"query": [
+								{
+									"key": "api_key",
+									"value": "bad_key"
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "583f13d9-4b4f-4484-8e62-22d349037b97"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.435733"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "__profilin=p%3Dt; path=/; HttpOnly; SameSite=Lax"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Title can't be blank and Price can't be blank\"\n}"
+				},
+				{
+					"id": "abf654bb-6adf-4894-a3d9-2890e703d769",
+					"name": "400 Missing Params",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{   \n    \"bad\": \"params\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/subscriptions?api_key=user_key",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"subscriptions"
+							],
+							"query": [
+								{
+									"key": "api_key",
+									"value": "user_key"
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "a584faed-c781-42b0-a41a-7c410584c731"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.152694"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "__profilin=p%3Dt; path=/; HttpOnly; SameSite=Lax"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Check request body formatting\"\n}"
+				},
+				{
+					"id": "c23c3f60-c8f0-42ee-8745-74aa3304f20e",
+					"name": "401 Bad Key",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{   \"subscription\": {\n        \"status\": \"status\",\n        \"frequency\": \"frequency\",\n        \"customer_id\": 1,\n        \"tea_id\": 1\n    }\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/subscriptions?api_key=bad_key",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"subscriptions"
+							],
+							"query": [
+								{
+									"key": "api_key",
+									"value": "bad_key"
+								}
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "b8bfeac1-1a0e-4554-8d44-c58e468dbfd9"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.043379"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "__profilin=p%3Dt; path=/; HttpOnly; SameSite=Lax"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Invalid api_key\"\n}"
+				},
+				{
+					"id": "adc668a1-896c-4a6c-9d15-87811fb10b58",
+					"name": "401 No Key",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{   \"subscription\": {\n        \"status\": \"status\",\n        \"frequency\": \"frequency\",\n        \"customer_id\": 1,\n        \"tea_id\": 1\n    }\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/subscriptions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"subscriptions"
+							],
+							"query": [
+								{
+									"key": "api_key",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "18fa4e28-9be7-4bba-b953-8a1c81ad22c8"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.017300"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "__profilin=p%3Dt; path=/; HttpOnly; SameSite=Lax"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Invalid or missing api_key\"\n}"
+				}
+			]
+		},
+		{
+			"name": "api/v1/subscriptions/:id",
+			"id": "4ac47d5f-f188-4603-95bc-fd1d91ca5106",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{   \n    \"subscription\": {\n        \"title\": \"New Title\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/subscriptions/1?api_key=user_key",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"subscriptions",
+						"1"
+					],
+					"query": [
+						{
+							"key": "api_key",
+							"value": "user_key"
+						}
+					]
+				},
+				"description": "This endpoint lets a select customer update one of their subscriptions."
+			},
+			"response": [
+				{
+					"id": "7a6e6238-65bf-4983-b000-97aa8dfdd75a",
+					"name": "200 OK",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{   \n    \"subscription\": {\n        \"title\": \"New Title\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/subscriptions/1?api_key=user_key",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"subscriptions",
+								"1"
+							],
+							"query": [
+								{
+									"key": "api_key",
+									"value": "user_key"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-store, must-revalidate, private, max-age=0"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "e3db942a-21d9-4cba-9f0e-6261a6609af3"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.059479"
+						},
+						{
+							"key": "X-MiniProfiler-Original-Cache-Control",
+							"value": "max-age=0, private, must-revalidate"
+						},
+						{
+							"key": "X-MiniProfiler-Ids",
+							"value": "zxglwjn4obyvmoxrcpw6,h4477flx04nb38moj0fw,3d9e3e254h1u3cg6nc1l,lkrw87h8n8oqocio50ym,72vbv1jjwivj6oiffdrd,4utprzlyp96nh2ry98f5,2y99l53mjyeawi9cmjou,1rk6o4j099bnujc9u14s,nt3ff5z3y12nzs444n4v,zxbnn3x1cmxwsr6xwir2,okys5s2omf7chcv0se5f,qpravm015p88hjfh5ujf,chipgoucnp3n04b9ha06,kkt3pbny1p6t4rd2lid7,qkz4r2894rw1lz3jzcco,lt1a42vxx6ztjrblsbtv,gf1iriwommo0f16sd1cd,rlkqqu4x8523zkxu7eb1,cnml5i6300vzz2hjt1yn,ku4zeoj1raf0x4tfslax"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "__profilin=p%3Dt; path=/; HttpOnly; SameSite=Lax"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"id\": \"1\",\n        \"type\": \"subscription\",\n        \"attributes\": {\n            \"title\": \"New Title\",\n            \"price\": \"price\",\n            \"status\": \"status\",\n            \"frequency\": \"frequency\"\n        },\n        \"relationships\": {\n            \"customer\": {\n                \"data\": {\n                    \"id\": \"1\",\n                    \"type\": \"customer\"\n                }\n            },\n            \"tea\": {\n                \"data\": {\n                    \"id\": \"1\",\n                    \"type\": \"tea\"\n                }\n            }\n        }\n    }\n}"
+				},
+				{
+					"id": "370c196e-3361-4cd5-952e-9afe4586e42a",
+					"name": "400 Bad Params",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/subscriptions/1?api_key=bad_key",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"subscriptions",
+								"1"
+							],
+							"query": [
+								{
+									"key": "api_key",
+									"value": "bad_key"
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "4b77c5a6-91c9-4db5-b428-ea2fcc8b8625"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.207477"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "__profilin=p%3Dt; path=/; HttpOnly; SameSite=Lax"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Check request body formatting\"\n}"
+				},
+				{
+					"id": "db9a1f07-4afe-497f-902c-07c407ef1089",
+					"name": "401 Wrong Key",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{   \n    \"subscription\": {\n        \"title\": \"New Title\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/subscriptions/1?api_key=user_key",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"subscriptions",
+								"1"
+							],
+							"query": [
+								{
+									"key": "api_key",
+									"value": "user_key"
+								}
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "1ee71edc-fb53-4497-aa71-6006dffc452f"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.032640"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "__profilin=p%3Dt; path=/; HttpOnly; SameSite=Lax"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Invalid api_key\"\n}"
+				},
+				{
+					"id": "59bd35b6-09a6-486c-b737-cc9b993e7da9",
+					"name": "401 Bad Key",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{   \n    \"subscription\": {\n        \"title\": \"New Title\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/subscriptions/1?api_key=bad_key",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"subscriptions",
+								"1"
+							],
+							"query": [
+								{
+									"key": "api_key",
+									"value": "bad_key"
+								}
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "5ea6b4c5-5a31-43be-90ed-fe1ecb2e6ee5"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.024786"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "__profilin=p%3Dt; path=/; HttpOnly; SameSite=Lax"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Invalid api_key\"\n}"
+				},
+				{
+					"id": "f2a7808c-cca7-4ea4-b984-3a66316fcfee",
+					"name": "401 No Key",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{   \n    \"subscription\": {\n        \"title\": \"New Title\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/subscriptions/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"subscriptions",
+								"1"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "cab79ed5-1824-469f-b31f-a05cd4273b41"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.007796"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "__profilin=p%3Dt; path=/; HttpOnly; SameSite=Lax"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Invalid or missing api_key\"\n}"
+				},
+				{
+					"id": "d1bf6866-e41a-42a3-b9d9-beca5ec554c8",
+					"name": "404 No Subscription",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{   \n    \"subscription\": {\n        \"title\": \"New Title\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/subscriptions/100?api_key=user_key",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"subscriptions",
+								"100"
+							],
+							"query": [
+								{
+									"key": "api_key",
+									"value": "user_key"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "fa3bb87a-8f6a-4d55-a4c5-9e2aa697abf4"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.026167"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "__profilin=p%3Dt; path=/; HttpOnly; SameSite=Lax"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Not Found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "api/v1/subscriptions/:id",
+			"id": "e99e09ad-64ef-4d4b-b9e9-189017aaebd1",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/subscriptions/1?api_key=user_key",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"subscriptions",
+						"1"
+					],
+					"query": [
+						{
+							"key": "api_key",
+							"value": "user_key"
+						}
+					]
+				},
+				"description": "This endpoint lets a select customer delete one of their subscriptions."
+			},
+			"response": [
+				{
+					"id": "a2a51ead-f512-4a16-bd82-0d6214fcba1a",
+					"name": "204 No Content",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/subscriptions/1?api_key=user_key",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"subscriptions",
+								"1"
+							],
+							"query": [
+								{
+									"key": "api_key",
+									"value": "user_key"
+								}
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-store, must-revalidate, private, max-age=0"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "a301af80-586d-4ecc-bfca-0e031eaa081a"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.079603"
+						},
+						{
+							"key": "X-MiniProfiler-Original-Cache-Control",
+							"value": "no-cache"
+						},
+						{
+							"key": "X-MiniProfiler-Ids",
+							"value": "dq09kg479kevxf4761p8,zxglwjn4obyvmoxrcpw6,h4477flx04nb38moj0fw,3d9e3e254h1u3cg6nc1l,lkrw87h8n8oqocio50ym,72vbv1jjwivj6oiffdrd,4utprzlyp96nh2ry98f5,2y99l53mjyeawi9cmjou,1rk6o4j099bnujc9u14s,nt3ff5z3y12nzs444n4v,zxbnn3x1cmxwsr6xwir2,okys5s2omf7chcv0se5f,qpravm015p88hjfh5ujf,chipgoucnp3n04b9ha06,kkt3pbny1p6t4rd2lid7,qkz4r2894rw1lz3jzcco,lt1a42vxx6ztjrblsbtv,gf1iriwommo0f16sd1cd,rlkqqu4x8523zkxu7eb1,cnml5i6300vzz2hjt1yn"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "__profilin=p%3Dt; path=/; HttpOnly; SameSite=Lax"
+						}
+					],
+					"cookie": [],
+					"body": null
+				},
+				{
+					"id": "0857d973-c42b-41da-9061-37e7a62a1f3c",
+					"name": "401 Wrong Key",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/subscriptions/1?api_key=user_key",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"subscriptions",
+								"1"
+							],
+							"query": [
+								{
+									"key": "api_key",
+									"value": "user_key"
+								}
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "f62b30f6-5552-4370-8082-1e37bd9eb422"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.196689"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "__profilin=p%3Dt; path=/; HttpOnly; SameSite=Lax"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Invalid api_key\"\n}"
+				},
+				{
+					"id": "e293f5b6-0a2c-46a2-8f92-261439c33b7f",
+					"name": "401 Bad Key",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/subscriptions/1?api_key=bad_key",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"subscriptions",
+								"1"
+							],
+							"query": [
+								{
+									"key": "api_key",
+									"value": "bad_key"
+								}
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "804067e2-a14f-44ed-b585-d1e65e3c1982"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.150621"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "__profilin=p%3Dt; path=/; HttpOnly; SameSite=Lax"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Invalid api_key\"\n}"
+				},
+				{
+					"id": "5f00c88e-f004-4705-be5d-fe55583b12a1",
+					"name": "401 No Key",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/subscriptions/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"subscriptions",
+								"1"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "7e4ade90-9e11-42b2-83cf-a3e45092731b"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.007719"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "__profilin=p%3Dt; path=/; HttpOnly; SameSite=Lax"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Invalid or missing api_key\"\n}"
+				},
+				{
+					"id": "c74a07df-3053-4d39-8887-67ced593be9c",
+					"name": "404 No Subscription",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/subscriptions/100?api_key=user_key",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"subscriptions",
+								"100"
+							],
+							"query": [
+								{
+									"key": "api_key",
+									"value": "user_key"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "cf3cec25-b504-4789-b439-8ca9e39b0303"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.027882"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "__profilin=p%3Dt; path=/; HttpOnly; SameSite=Lax"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Not Found\"\n}"
+				}
+			]
+		}
+	]
+}
